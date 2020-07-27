@@ -2,11 +2,15 @@
     <!-- display the navigation bar -->
     <v-app-bar app>
       <v-toolbar-items>
+        <!-- <router-link to="/" tag="span" style="cursor: pointer">
+          {{ appTitle }}
+        </router-link> -->
         <v-btn
-        text
-            tag='span'
-            style='cursor: pointer'
-            >
+          text
+          to="/" 
+          tag='span'
+          style='cursor: pointer'
+          >
           SHOW CASE
         </v-btn>
       </v-toolbar-items>
@@ -37,8 +41,9 @@
 export default {
   data() {
     return {
+      //appTitle: 'Awesome App',
       menuItems: [
-          { title: 'Home', path: '/home', icon: 'home' },
+          { title: 'Home', path: '/', icon: 'home' },
           { title: 'Sign Up', path: '/register', icon: 'face' },
           { title: 'Sign In', path: '/login', icon: 'lock_open' }
      ]

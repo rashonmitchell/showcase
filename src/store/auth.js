@@ -1,12 +1,13 @@
 import { firebase } from '../firebaseinit'
-import { router } from '../routes/router'
+import { router } from '../router/router'
 
-export default new Vuex.Store({
-    state: {
+export default {
+    namespaced: true,
+    state: () => ({
       user: null,
       status: null,
       error: null
-    },
+    }),
     mutations: {
       setUser (state, payload) {
         state.user = payload
@@ -58,8 +59,8 @@ export default new Vuex.Store({
             context.commit('setStatus', 'success');
             context.commit('setError', null);
 
-            router.push({ name: 'home'})
-        } catch(e) {
+            router.push({ name: 'Home'})
+        } catch(error) {
             context.commit('setStatus', 'failure');
             context.commit('setError', error.message)
         }
@@ -83,13 +84,11 @@ export default new Vuex.Store({
       status (state) {
         return state.status
       },
-  
       user (state) {
         return state.user
-      },
-  
-      error (state) {
-        return state.error
       }
+    //   error (state) {
+    //     return state.error
+    //   }
     }
-  })
+  }

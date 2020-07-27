@@ -7,12 +7,18 @@ import Login from '../components/auth/Login.vue'
 import ForgotPassword from '../components/auth/ForgotPassword.vue'
 
 // Views
+import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
+        {
+            path: "/",
+            name: "Home",
+            component: Home
+          },
         {
             path: '/register',
             name: 'Register',
