@@ -2,11 +2,16 @@
     <v-row class="d-flex justify-center align-center">
         <v-col cols="6">
             <v-card class="mx-auto mt-4">
-                <v-progress-linear v-if="loggingIn" indeterminate color="primary"></v-progress-linear>
+                <v-progress-linear v-if="signingUp" indeterminate color="primary"></v-progress-linear>
                 <h1 class="primary--text font-weight-light px-4 pt-4 text-center">Sign Up</h1>
                 <v-form class="px-4" ref="form" v-model="valid" lazy-validation>
                   <v-row>
                       <v-col>
+                        <v-text-field
+                              v-model="displayName"
+                              label="Full Name"
+                              required
+                          ></v-text-field>
                           <v-text-field
                               v-model="email"
                               :rules="emailRules"
@@ -67,39 +72,50 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
-  data: () => ({
-    passwordShow: false,
-    confirmPasswordShow: false,
-    valid: true,
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+/.test(v) || 'E-mail must be valid'
-    ],
-    password: '',
-    confirmPassword: '',
-    passwordRules: [
-      v => !!v || 'Password and Confirm password Required'
-    ]
-  }),
+  data: function(){
+    return {
+      passwordShow: false,
+      confirmPasswordShow: false,
+      valid: true,
+      displayName: '',
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ],
+      password: '',
+      confirmPassword: '',
+      passwordRules: [
+        v => !!v || 'Password and Confirm password Required'
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters("auth", ["signingUp"])
+  },
   methods: {
+    ...mapActions("auth", ["signUpAction"]),
     validate () {
       if (this.$refs.form.validate()) {
         this.snackbar = true
-        this.registerWithFirebase()
+        //this.registerWithFirebase()
+        const user = {email: this.email, password: this.password}
+        this.signUpAction(user);
       }
     },
     // reset () {
     //   this.$refs.form.reset()
     // },
-    registerWithFirebase () {
-      const user = {
-        email: this.email,
-        password: this.password
-      }
-      this.$store.dispatch('signUpAction', user)
-    }
+    // registerWithFirebase () {
+    //   const user = {
+    //     email: this.email,
+    //     password: this.password,
+    //     displayName: this.displayName
+    //   }
+    //   this.$store.dispatch('signUpAction', user)
+    // }
   }
 }
 </script>

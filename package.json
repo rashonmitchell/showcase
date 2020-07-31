@@ -7,16 +7,23 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "resolutions": { "eslint-loader": "2.1.2" },
+  "resolutions": {
+    "eslint-loader": "2.1.2"
+  },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "core-js": "^3.6.5",
     "firebase": "^7.17.1",
+    "firebase-functions": "^3.8.0",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4",
     "vuetify": "^2.2.11",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
     "@mdi/font": "^5.3.45",
     "@mdi/js": "^5.3.45",
     "@vue/cli-plugin-babel": "~4.4.0",

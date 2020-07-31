@@ -1,9 +1,9 @@
 <template>
-    <v-row class="d-flex justify-center align-center">
+    <v-row class="d-flex justify-center align-center mt-10">
         <v-col cols="6">
             <v-card>
                 <v-progress-linear v-if="loggingIn" indeterminate color="primary"></v-progress-linear>
-                <h1 class="primary--text font-weight-light px-4 pt-4 text-center">Sign Up</h1>
+                <h1 class="primary--text font-weight-light px-4 pt-4 text-center">Sign In</h1>
                 <v-form class="px-4" ref="form" v-model="valid" lazy-validation>
                     <v-row>
                         <v-col>
@@ -84,42 +84,63 @@
 </template>
 
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { mapActions, mapGetters } from "vuex";
 export default {
-  data: () => ({
-    passwordShow: false,
-    valid: true,
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+/.test(v) || 'E-mail must be valid'
-    ],
-    password: '',
-    passwordRules: [
-      v => !!v || 'Password is Required'
-    ]
-  }),
+  data: function(){
+    return {
+      passwordShow: false,
+      valid: true,
+      email: null,
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ],
+      password: '',
+      passwordRules: [
+        v => !!v || 'Password is Required'
+      ]
+    }
+  },
+  components: {
+    FontAwesomeIcon
+  },
+  computed: {
+    // loggedIn() {
+    //   return this.$store.state.status.updateLoggingIn;
+    // }
+    ...mapGetters("auth", ["loggingIn"])
+  },
   methods: {
+    ...mapActions("auth", ["signInAction"]),
     validate () {
       if (this.$refs.form.validate()) {
         this.snackbar = true
-        this.loginWithFirebase()
+        //this.loginWithFirebase()
+        const user = {email: this.email, password: this.password}
+        this.signInAction(user);
       }
     },
     reset () {
       this.$refs.form.reset()
     },
-    loginWithFirebase () {
-      const user = {
-        email: this.email,
-        password: this.password
-      }
-      this.$store.dispatch('signInAction', user)
-    }
+    // loginWithFirebase () {
+    //   const user = {
+    //     email: this.email,
+    //     password: this.password
+    //   }
+    //   this.$store.dispatch('signInAction', user)
+    // },
+    socialLoginFacebook: function() {},
+    socialLogin: function() {},
   }
 }
 </script>
 
 <style lang="scss">
+.svg-inline--fa.fa-w-16 {
+    width: 1.1em;
+}
 .card-body-lr {
   box-shadow: 5px 10px 18px #d3d3d3;
 }

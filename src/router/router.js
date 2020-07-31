@@ -7,7 +7,11 @@ import Login from '../components/auth/Login.vue'
 import ForgotPassword from '../components/auth/ForgotPassword.vue'
 
 // Views
-import Home from '../views/Home.vue';
+import Home from '../views/Home.vue'
+import Dashboard from '../views/Dashboard'
+
+// Users
+import UserSettings from '../components/user/settings/UserSettings'
 
 Vue.use(VueRouter);
 
@@ -18,7 +22,17 @@ const router = new VueRouter({
             path: "/",
             name: "Home",
             component: Home
-          },
+        },
+        {
+            path: "/dashboard",
+            name: "Dashboard",
+            component: Dashboard
+        },
+        {
+            path: "/settings",
+            name: "Settings",
+            component: UserSettings
+        },
         {
             path: '/register',
             name: 'Register',

@@ -45,7 +45,6 @@ export default {
   text-align: center;
   top: 0;
 }
-
 .fadeout {
   animation: fadeout 1.5s forwards;
 }

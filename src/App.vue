@@ -11,7 +11,7 @@
 
 <script>
 import LoadingScreen from "./components/LoadingScreen";
-import NavBar from './views/NavBar';
+import NavBar from './components/NavBar';
 
 export default {
   name: 'App',
