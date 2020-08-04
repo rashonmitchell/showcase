@@ -101,7 +101,7 @@ export default {
       if (this.$refs.form.validate()) {
         this.snackbar = true
         //this.registerWithFirebase()
-        const user = {email: this.email, password: this.password}
+        const user = {email: this.email, password: this.password, displayName: this.displayName}
         this.signUpAction(user);
       }
     },

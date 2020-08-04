@@ -2,27 +2,26 @@
   <v-row>
       <v-col>
           <h1>dashboard</h1>
-          <!-- {{user}} -->
-          <!-- <div>loggedInUser getters: {{user}}</div> -->
-          <!-- <div>user getters: {{user}}</div> -->
+         <h2>
+           
+          {{ loggedInUser.email }}
+          </h2> 
+          <p>{{ loggedInUser.displayName }}</p>
       </v-col>
   </v-row>
 </template>
 
 <script>
-//import { mapGetters } from "vuex";
-//export default {
+import { mapGetters } from "vuex";
+export default {
   // data: function(){
 
   // },
-  // computed: {
-  //   // user(){
-  //   //   return this.$store.getters.user;
-  //   // }
-  //   //...mapGetters(['user'])
-  // },
+  computed: {
+    ...mapGetters("auth", ['loggedInUser']),
+  },
 
-//}
+}
 </script>
 
 <style>
