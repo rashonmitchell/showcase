@@ -1,10 +1,13 @@
 <template>
-    <v-row class="d-flex justify-center align-center">
-        <v-col cols="6">
-            <v-card class="mx-auto mt-4">
+    <v-row class="d-flex justify-center align-center mt-10">
+        <v-col>
+            <v-card class="mx-auto" max-width="600">
                 <v-progress-linear v-if="signingUp" indeterminate color="primary"></v-progress-linear>
                 <h1 class="primary--text font-weight-light px-4 pt-4 text-center">Sign Up</h1>
                 <v-form class="px-4" ref="form" v-model="valid" lazy-validation>
+                  <v-snackbar v-if="this.$store.state.error">
+                    {{ this.$store.state.error }}
+                  </v-snackbar>
                   <v-row>
                       <v-col>
                         <v-text-field
@@ -80,10 +83,11 @@ export default {
       confirmPasswordShow: false,
       valid: true,
       displayName: '',
+      error: '',
       email: '',
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
+        v => !!v || 'Email is required',
+        v => /.+@.+/.test(v) || 'Email must be valid'
       ],
       password: '',
       confirmPassword: '',
@@ -93,10 +97,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("auth", ["signingUp"])
+    ...mapGetters('auth', ['signingUp']),
   },
   methods: {
-    ...mapActions("auth", ["signUpAction"]),
+    ...mapActions('auth', ['signUpAction']),
     validate () {
       if (this.$refs.form.validate()) {
         this.snackbar = true

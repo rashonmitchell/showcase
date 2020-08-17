@@ -1,6 +1,6 @@
 <template>
   <v-row>
-      <v-col>
+      <v-col v-if="authenticated">
           <h1>dashboard</h1>
          <h2>
            
@@ -18,7 +18,7 @@ export default {
 
   // },
   computed: {
-    ...mapGetters("auth", ['loggedInUser']),
+    ...mapGetters('auth', ['authenticated', 'loggedInUser']),
   },
 
 }

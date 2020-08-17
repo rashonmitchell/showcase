@@ -40,12 +40,12 @@ const router = new VueRouter({
         },
         {
             path: '/login',
-            name: 'login',
+            name: 'Login',
             component: Login
         },
         {
-            path: '/forgotpassword',
-            name: 'forgotpassword',
+            path: '/forgot-password',
+            name: 'Forgotpassword',
             component: ForgotPassword
         },
     ]
