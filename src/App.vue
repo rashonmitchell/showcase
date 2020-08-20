@@ -31,3 +31,10 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+@import './src/assets/scss/main.scss';
+
+// .bg-color {
+//   background: #d6dfe2;
+// }
+</style>

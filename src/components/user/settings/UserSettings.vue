@@ -1,28 +1,62 @@
 <template>
-  <v-row>
-      <v-col>
-          <h2>Settings</h2>
-          <h3>Settings</h3>
-          <p>Update your profile</p>
+  <!-- <v-container>
+    <v-row class="text-center">
+        
+    </v-row>
+  </v-container> -->
+</template>
+<template>
+  <v-container fluid pa-3 style="min-height: 100vh;">
+    <v-row>
 
-          <!-- <transition name="fade">
-            <p v-if="showSuccess" class="success">profile updated</p>
-          </transition>
-          <form @submit.prevent>
-            <label for="name">Name</label>
-            <input v-model.trim="name" type="text" :placeholder="userProfile.name" id="name" />
+      <!------------------------ SCREAM LIST ----------------------->
+      <v-col cols="12" sm="8" order="1" order-sm="1">
+        <v-col v-if="authenticated">
+            <h1>settings</h1> 
+            <p>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</p>
+            <h2>{{ loggedInUser.email }}</h2>
+        </v-col>
+          <!------------------------ SCREAM ITEM ----------------------->
+          <v-card class="mb-5" elevation="0">
+            
+          </v-card>
+          <!------------------------ END SCREAM ITEM ----------------------->
 
-            <label for="title">Job Title</label>
-            <input v-model.trim="title" type="text" :placeholder="userProfile.title" id="title" />
-
-            <button @click="updateProfile()" class="button">Update Profile</button>
-          </form> -->
       </v-col>
-  </v-row>
+      <!-- <v-col cols="12" sm="8" >
+          <v-card  class="mb-5" elevation="0">
+              
+          </v-card>
+      </v-col> -->
+      <!------------------------ END SCREAM LIST ----------------------->
+
+
+      <!------------------------ PROFILE ----------------------->
+      <v-col cols="12" sm="4" order="-1" order-sm="2" >
+          <v-card min-height="300" min-width="150" elevation="0" >
+            <!-- <AppPerfilContentLoader v-if="loadingUI"></AppPerfilContentLoader> -->
+            <ProfileNav ></ProfileNav>
+          </v-card>
+      </v-col>
+      <!------------------------ END PROFILE ----------------------->
+
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
+import ProfileNav from '../profile/ProfileNav'
+export default {
+  components: {
+    ProfileNav,
+  },
+  computed: {
+    ...mapState(['userProfile']),
+    ...mapGetters('auth', ['authenticated', 'loggedInUser']),
+  },
+}
+
 // export default {
 //   data() {
 //     return {
@@ -31,9 +65,7 @@
 //       showSuccess: false
 //     }
 //   },
-//   computed: {
-//     ...mapState(['userProfile'])
-//   },
+  
 //   methods: {
 //     updateProfile() {
 //       this.$store.dispatch('updateProfile', {

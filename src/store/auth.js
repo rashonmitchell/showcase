@@ -60,6 +60,7 @@ export default {
           email: user.email,
           displayName: user.displayName,
           photo: user.photoURL,
+          createdAt: user.metadata.creationTime,
           providerData: user.providerData,
           // providerData: user.providerData[0].providerId
           //displayName: firebase.auth().currentUser.displayName,
@@ -73,6 +74,7 @@ export default {
           //   providerData: user.providerData,
           // })
         // })
+        //userData.createdAt.toDate()
         
         // console.log(user, 'user console log')
         console.log(userData, 'userData')
@@ -261,7 +263,6 @@ export default {
               });
           }
         })
-
     },
     async signOutAction(context){
       try{

@@ -7,6 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons' 
 
+const locales = {
+  en: require('vuetify/es5/locale/en'),
+  fr: require('vuetify/es5/locale/fr')
+}
+
+const current = navigator.language.split('-')[0]
+
 Vue.component('font-awesome-icon', FontAwesomeIcon) // Register component globally
 library.add(fas,faFacebook, faGoogle) // Include needed icons
 
@@ -18,4 +25,33 @@ const opts = {
     },
   }
 const Iconfont = 'mdi' | 'mdiSvg' | 'md' | 'fa' | 'faSvg' | 'fa4';
-export default new Vuetify(opts)
+export default new Vuetify({
+  opts,
+  locales,
+  current,
+  theme: {
+    dark: false,
+    themes: {
+      dark: {
+        background: '#fff',
+        primary: '#1689E7',
+        accent: '#4CBB99',
+        secondary: '#7BC6FF',
+        success: '#4CAF50',
+        info: '#2196F3',
+        warning: '#FB8C00',
+        error: '#FF5252'
+      },
+      light: {
+        background: '#d6dfe2',
+        primary: '#1689E7',
+        accent: '#4CBB99',
+        secondary: '#7BC6FF',
+        success: '#4CAF50',
+        info: '#2196F3',
+        warning: '#FB8C00',
+        error: '#FF5252',
+      }
+    }
+  }
+})

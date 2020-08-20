@@ -5,13 +5,13 @@
                 <v-card class="mx-auto" max-width="600">
                     <v-progress-linear v-if="user" indeterminate color="primary"></v-progress-linear>
                     <v-form class="px-4" ref="form" v-model="valid" lazy-validation @submit.prevent="validate">
-                    <h1 class="primary--text font-weight-light px-4 pt-4 text-center">Forgot Password</h1>
+                    <h1 class="primary--text font-weight-light px-4 pt-4 text-center">{{ $t('forgotPasswordTitle') }}</h1>
                         <v-row>
                             <v-col>
                             <v-text-field
                                 v-model="email"
                                 :rules="emailRules"
-                                label="Email"
+                                :label="$t('email')"
                                 required
                             ></v-text-field>
                             </v-col>
@@ -25,12 +25,12 @@
                                     color="success"
                                     @click="validate"
                                 >
-                                    Reset password
+                                  {{ $t('resetPassword') }} 
                                 </v-btn>
                                 <hr class="mt-4">
                                 <p class="text-right mt-2">
                                     <!-- New User? Sign up for an account -->
-                                    <router-link to="/login" class="text-info">Remember password?</router-link>
+                                    <router-link to="/login" class="text-info">{{ $t('rememberPassword') }}</router-link>
                                 </p>
                             </v-col>
                         </v-row>
@@ -49,8 +49,8 @@ export default {
         valid: true,
         email: null,
         emailRules: [
-            v => !!v || 'E-mail is required',
-            v => /.+@.+/.test(v) || 'E-mail must be valid'
+            v => !!v || `${this.$t('emailIsRequired')}`,
+            v => /.+@.+/.test(v) || `${this.$t('emailMustBeValid')}` 
         ]
     };
   },

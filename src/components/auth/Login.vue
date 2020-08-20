@@ -3,24 +3,24 @@
     <v-col>
       <v-card class="mx-auto" max-width="600">
         <v-progress-linear v-if="loggingIn" indeterminate color="primary"></v-progress-linear>
-        <h1 class="primary--text font-weight-light px-4 pt-4 text-center">Sign In</h1>
+        <h1 class="primary--text font-weight-light px-4 pt-4 text-center">{{ $t('signIn') }}</h1>
         <v-form class="px-4" ref="form" v-model="valid" lazy-validation @submit.prevent="validate">
           <v-row>
-            <v-snackbar v-if="this.$store.state.error">
+            <!-- <v-snackbar v-if="this.$store.state.error">
               {{ this.$store.state.error }}
-            </v-snackbar>
+            </v-snackbar> -->
             <v-col>
               <v-text-field
                 v-model="email"
                 :rules="emailRules"
-                label="Email"
+                :label="$t('email')"
                 required
               ></v-text-field>
 
               <v-text-field
                 v-model="password"
                 :rules="passwordRules"
-                label="Password"
+                :label="$t('password')"
                 required
                 :append-icon="passwordShow ? 'visibility' : 'visibility_off'"
                 :type="passwordShow ? 'text' : 'password'"
@@ -37,27 +37,26 @@
                 color="success"
                 @click="validate"
               >
-                  Login
+                  {{ $t('signIn') }}
               </v-btn>
+              <v-spacer></v-spacer>
               <v-btn
                   color="error"
                   @click="reset"
               >
-                  Reset Form
+                {{ $t('resetForm') }}
               </v-btn>
             </v-col>
           </v-row>
           <v-row>
             <v-col class="text-center">
-              <p class="text-primary">
-                  Or Sign In Using
-              </p>
+              <p class="text-primary">{{ $t('orSignInUsing') }}</p>
               <button 
                 class="btn social-btn-google follow-google" 
                 @click.prevent="signInGoogle"
               >
                 <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'google' }"></font-awesome-icon>
-                <span class="ml-3">Google</span>
+                <span class="ml-3">{{ $t('google') }}</span>
               </button>
               
               <button 
@@ -65,7 +64,7 @@
                   @click="signInFacebook"
               >
                   <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook' }"></font-awesome-icon>
-                  <span class="ml-3 span-social">Facebook</span>
+                  <span class="ml-3 span-social">{{ $t('facebook') }}</span>
               </button>
             </v-col>
           </v-row>
@@ -74,10 +73,10 @@
             <v-col>
               <p class="text-right mt-2">
                 <!-- New User? Sign up for an account -->
-                <router-link to="/register" class="text-info">No account yet?</router-link>
+                <router-link to="/register" class="text-info">{{ $t('noAccountYet') }}</router-link>
               </p>
               <p class="text-right mt-2">
-                <router-link to="/forgot-password" class="text-info">Forgot password?</router-link>
+                <router-link to="/forgot-password" class="text-info">{{ $t('forgotPassword') }}</router-link>
               </p> 
             </v-col>
           </v-row>
@@ -97,12 +96,12 @@ export default {
       valid: true,
       email: null,
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
+        v => !!v || `${this.$t('emailIsRequired')}`,
+        v => /.+@.+/.test(v) || `${this.$t('emailMustBeValid')}`
       ],
       password: '',
       passwordRules: [
-        v => !!v || 'Password is Required'
+        v => !!v || `${this.$t('passwordIsRequired')}`
       ]
     }
   },
@@ -110,9 +109,6 @@ export default {
     FontAwesomeIcon
   },
   computed: {
-    // loggedIn() {
-    //   return this.$store.state.status.updateLoggingIn;
-    // }
     ...mapGetters("auth", ['loggingIn', 'error'])
   },
   methods: {
@@ -125,21 +121,9 @@ export default {
         this.signInAction(user);
       }
     },
-    // onSigninGoogle () {
-    //   this.$store.dispatch('signUserInGoogle')
-    // },
     reset () {
       this.$refs.form.reset()
     },
-    // loginWithFirebase () {
-    //   const user = {
-    //     email: this.email,
-    //     password: this.password
-    //   }
-    //   this.$store.dispatch('signInAction', user)
-    // },
-    socialLoginFacebook: function() {},
-    socialLogin: function() {},
   }
 }
 </script>
