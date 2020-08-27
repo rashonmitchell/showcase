@@ -15,6 +15,7 @@ export default {
   no: 'No',
   yes: 'si',
   signUp: 'Regístrate',
+  clearForm: 'Clear Form',// update this 
   darkMode: 'Modo oscuro',
   lightMode: 'Modo de luz',
   name: 'Nombre',
@@ -28,7 +29,8 @@ export default {
   forgotPassword: '¿Se te olvidó tu contraseña?',
   forgotPasswordTitle: 'Se te olvidó tu contraseña',
   resetPassword: 'Restablecer la contraseña',
-  rememberPassword: 'Remember password?',
+  rememberPassword: '¿Recordar contraseña?',
+
   alreadyHaveAnAccount: '¿Ya tienes una cuenta?',
   isRequired: 'Es requerido',
   passwordIsRequired: 'Se requiere contraseña',
@@ -42,4 +44,11 @@ export default {
   twitter: 'Gorjeo',
   settings: 'Configuraciones',
   dashboard: 'Tablero',
+
+  // Profile Pages
+  editPassword: 'Edit Password',// update this
+  currentPassword: 'Current password', // update this
+  updatePassword: 'Update Password', // update this
+  editProfile: 'Edit Profile', // update this
+  updateProfile: 'Update Profile', // update this
   }

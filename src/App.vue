@@ -1,7 +1,8 @@
 <template>
   <v-app>
-    <LoadingScreen :isLoading="isLoading" />
-    <v-main v-if="!isLoading">
+    <!-- <LoadingScreen :isLoading="isLoading" />
+    <v-main v-if="!isLoading"> -->
+    <v-main>
       <!-- display nav bar -->
       <nav-bar></nav-bar>
       <router-view></router-view>
@@ -11,7 +12,7 @@
 
 <script>
 import LoadingScreen from "./components/LoadingScreen";
-import NavBar from './components/NavBar';
+import NavBar from './components/user/ui/NavBar';
 
 export default {
   name: 'App',
@@ -33,8 +34,4 @@ export default {
 </script>
 <style lang="scss">
 @import './src/assets/scss/main.scss';
-
-// .bg-color {
-//   background: #d6dfe2;
-// }
 </style>

@@ -3,7 +3,7 @@
         <v-row class="d-flex justify-center align-center mt-10" max-width="600">
             <v-col>
                 <v-card class="mx-auto" max-width="600">
-                    <v-progress-linear v-if="user" indeterminate color="primary"></v-progress-linear>
+                    <v-progress-linear v-if="user" indeterminate color="#32BCC3"></v-progress-linear>
                     <v-form class="px-4" ref="form" v-model="valid" lazy-validation @submit.prevent="validate">
                     <h1 class="primary--text font-weight-light px-4 pt-4 text-center">{{ $t('forgotPasswordTitle') }}</h1>
                         <v-row>
@@ -22,7 +22,7 @@
                                     outlined
                                     type="submit"
                                     :disabled="!valid"
-                                    color="success"
+                                    color="#32BCC3"
                                     @click="validate"
                                 >
                                   {{ $t('resetPassword') }} 

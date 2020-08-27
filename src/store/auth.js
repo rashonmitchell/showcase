@@ -59,7 +59,7 @@ export default {
           uid: user.uid,
           email: user.email,
           displayName: user.displayName,
-          photo: user.photoURL,
+          photoURL: user.photoURL,
           createdAt: user.metadata.creationTime,
           providerData: user.providerData,
           // providerData: user.providerData[0].providerId

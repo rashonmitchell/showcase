@@ -33,6 +33,7 @@ export default new Vuetify({
     dark: false,
     themes: {
       dark: {
+        secondaryColor: "#ecebeb",
         background: '#fff',
         primary: '#1689E7',
         accent: '#4CBB99',
@@ -43,7 +44,9 @@ export default new Vuetify({
         error: '#FF5252'
       },
       light: {
-        background: '#d6dfe2',
+        mainColor: '#32BCC3',
+        primaryColor:"#f3f3f3",
+        background: '#f7f7f7',
         primary: '#1689E7',
         accent: '#4CBB99',
         secondary: '#7BC6FF',

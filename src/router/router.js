@@ -12,6 +12,11 @@ import Dashboard from '../views/Dashboard'
 
 // Users
 import UserSettings from '../components/user/settings/UserSettings'
+import UserProfile from '../components/user/profile/UserProfile'
+import UserProfilePassword from '../components/user/profile/UserProfilePassword'
+import UserProfileEmail from '../components/user/profile/UserProfileEmail'
+import UserProfileNotfication from '../components/user/profile/UserProfileNotfication'
+import UserDailyYogurt from '../components/user/profile/UserDailyYogurt'
 
 Vue.use(VueRouter);
 
@@ -29,9 +34,44 @@ const router = new VueRouter({
             component: Dashboard
         },
         {
-            path: "/settings",
+            path: "/settings/",
             name: "Settings",
-            component: UserSettings
+            component: UserSettings,
+            props: true,
+            children: [
+                {
+                    path: '',
+                    name: 'UserProfile',
+                    component: UserProfile
+                },
+                {
+                    path: 'password',
+                    name: 'Password & Security',
+                    component: UserProfilePassword
+                },
+                {
+                    path: "email",
+                    Name: 'UserProfileEmail',
+                    component: UserProfileEmail
+                }
+              ]
+        },
+        // {
+        //     path: '/settings/password',
+        //     name: 'Password & Security',
+        //     component: UserProfilePassword
+        // },
+        // {
+        //     path: "/settings/email",
+        //     component: UserProfileEmail
+        // },
+        {
+            path: '/settings/notfication',
+            component: UserProfileNotfication
+        },
+        {
+            path: '/settings/daily-yogurt',
+            component: UserDailyYogurt
         },
         {
             path: '/register',

@@ -16,6 +16,7 @@ export default {
   no: 'Non',
   yes: 'Oui',
   signUp: "S'inscrire",
+  clearForm: 'Clear Form',// update this 
   register: 'S\'inscrire',
   darkMode: 'Thème sombre',
   lightMode: 'Thème lumineux',
@@ -44,4 +45,11 @@ export default {
   twitter: 'Twitter',
   settings: 'Paramètres',
   dashboard: 'Tableau de bord',
+
+  // Profile Pages
+  editPassword: 'Edit Password',// update this
+  currentPassword: 'Current password', // update this
+  updatePassword: 'Update Password', // update this
+  editProfile: 'Edit Profile', // update this
+  updateProfile: 'Update Profile', // update this
 }

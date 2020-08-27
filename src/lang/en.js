@@ -16,6 +16,7 @@ export default {
   no: 'No',
   yes: 'Yes',
   signUp: 'Sign Up',
+  clearForm: 'Clear Form',
   darkMode: 'Dark Mode',
   lightMode: 'Light mode',
   name: 'Name',
@@ -29,7 +30,8 @@ export default {
   forgotPassword: 'Forgot password?',
   forgotPasswordTitle: 'Forgot Password',
   resetPassword: 'Reset password',
-  rememberPassword: '¿Recordar contraseña?',
+  rememberPassword: 'Remember password?',
+
   alreadyHaveAnAccount: 'Already have an account?',
   isRequired: 'is required',
   passwordIsRequired: 'Password is Required',
@@ -43,4 +45,11 @@ export default {
   twitter: 'Twitter',
   settings: 'Settings',
   dashboard: 'Dashboard',
+
+  // Profile Pages
+  editPassword: 'Edit Password',
+  currentPassword: 'Current password',
+  updatePassword: 'Update Password',
+  editProfile: 'Edit Profile',
+  updateProfile: 'Update Profile',
 }

@@ -2,7 +2,7 @@
   <v-row class="d-flex justify-center align-center mt-10">
     <v-col>
       <v-card class="mx-auto" max-width="600">
-        <v-progress-linear v-if="loggingIn" indeterminate color="primary"></v-progress-linear>
+        <v-progress-linear v-if="loggingIn" indeterminate color="#32BCC3"></v-progress-linear>
         <h1 class="primary--text font-weight-light px-4 pt-4 text-center">{{ $t('signIn') }}</h1>
         <v-form class="px-4" ref="form" v-model="valid" lazy-validation @submit.prevent="validate">
           <v-row>
@@ -32,19 +32,21 @@
             <v-col class="text-right">
               <v-btn
                 outlined
+                class="text-right mr-4"
                 type="submit"
                 :disabled="!valid"
-                color="success"
+                color="#32BCC3"
                 @click="validate"
               >
-                  {{ $t('signIn') }}
+                {{ $t('signIn') }}
               </v-btn>
-              <v-spacer></v-spacer>
               <v-btn
-                  color="error"
-                  @click="reset"
+                color="#32BCC3" 
+                elevation="0" 
+                dark
+                @click="reset"
               >
-                {{ $t('resetForm') }}
+                {{ $t('clearForm')}}
               </v-btn>
             </v-col>
           </v-row>

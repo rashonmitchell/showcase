@@ -23,6 +23,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
-const usersCollection = db.collection('users')
 
-export { firebase, db, usersCollection }
+// collection references
+const usersCollection = db.collection('users')
+const postsCollection = db.collection('posts')
+const commentsCollection = db.collection('comments')
+const likesCollection = db.collection('likes')
+
+export { firebase, db, usersCollection, postsCollection, commentsCollection, likesCollection }

@@ -48,3 +48,21 @@ a {
 .background-secundario {
     background: #191C1E;
 }
+
+
+
+//###################################################################
+//                             BTN
+//###################################################################
+.fixed-action-btn {
+    position: fixed;
+    bottom: 30px;
+    z-index: 998;
+}
+// .v-slide-group__next, .v-slide-group__prev {
+//     align-items: center;
+//     display: flex;
+//     flex: 0 1 22px;
+//     justify-content: center;
+//     min-width: 25px !important;
+// }

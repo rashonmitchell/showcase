@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <AddBtn />
     <v-layout row wrap class="text-center">
       <v-flex xs12  mt-5>
         <h1> {{ $t('tagLine') }}</h1>
@@ -21,7 +22,7 @@
       dark
       max-width="600"
     >
-      <v-card-title>
+      <v-card-title class="sticky-header elevation-1">
         <v-icon class="mr-2">calendar_today</v-icon>
         <div>{{$t('yogurtOfTheDay')}}</div>
       </v-card-title>
@@ -94,25 +95,41 @@
         </v-list-item>
       </v-card-actions>
     </v-card>
+    <v-flex xs12 sm6 offset-sm3 mt-3>
+      <blockquote class="blockquote text-xs-center">
+        It is a long established fact that a reader will be distracted by the readable content of a 
+        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
+        normal distribution of letters, as opposed to using 'Content here, content here', making it 
+        look like readable English. Many desktop publishing packages and web page editors now use 
+        Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many 
+        web sites still in their infancy. Various versions have evolved over the years, sometimes 
+        by accident, sometimes on purpose (injected humour and the like).
+      </blockquote>
+    </v-flex>
 
-    <v-fab-transition>
-      <v-btn
-        class=""
-        color="#42b983"
-        dark
-        absolute
-        right
-        fab
-      >
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
-    </v-fab-transition>
+    <v-flex xs12 sm6 offset-sm3 mt-3>
+      <blockquote class="blockquote text-xs-center">
+        It is a long established fact that a reader will be distracted by the readable content of a 
+        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
+        normal distribution of letters, as opposed to using 'Content here, content here', making it 
+        look like readable English. Many desktop publishing packages and web page editors now use 
+        Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many 
+        web sites still in their infancy. Various versions have evolved over the years, sometimes 
+        by accident, sometimes on purpose (injected humour and the like).
+      </blockquote>
+    </v-flex>
+
+    
   </v-container>
 
 </template>
 <script>
+import AddBtn from '../components/user/ui/AddBtn'
 export default {
   name: "Home",
+  components: {
+    AddBtn,
+  }, 
   data: () => ({
     copied: false,
     dialog: false,
@@ -131,11 +148,21 @@ export default {
 <style lang="scss">
   .fixed-action-btn {
     position: fixed;
-    right: 30px;
+    // right: 30px;
     bottom: 30px;
-    padding-top: 15px;
-    margin-bottom: 0;
+    // padding-top: 15px;
+    // margin-bottom: 0;
     z-index: 998;
+}
+.v-card__title .sticky-header {
+  position: sticky;
+  top: var(--toolbarHeight);
+}
+
+div.v-card__title.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
   
 </style>
