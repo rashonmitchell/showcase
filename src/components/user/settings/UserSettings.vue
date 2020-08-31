@@ -1,13 +1,15 @@
 <template>
-  <!-- <v-container>
-    <v-row class="text-center">
-        
-    </v-row>
-  </v-container> -->
-</template>
-<template>
   <v-container fluid pa-3 style="min-height: 100vh;">
+    <!------------------------ PROFILE NAME ----------------------->
     <v-row>
+      <v-col v-if="authenticated" class="text-center mb-3 title text-secundario font-weight-bold">
+          <!-- <v-banner sticky> -->
+            <span>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</span>
+          <!-- </v-banner> -->
+      </v-col>
+    </v-row>
+    <v-row>
+    <!------------------------ END PROFILE NAME ----------------------->
 
     <!------------------------ SCREAM LIST ----------------------->
     <v-col cols="12" sm="3" order="-1" order-sm="1">
@@ -32,24 +34,11 @@
     <!------------------------ END SCREAM LIST ----------------------->
 
 
-    <!------------------------ PROFILE ----------------------->
+    <!------------------------ PROFILE TABS ----------------------->
     <v-col cols="12" sm="9" order="1" order-sm="2" >
-      <v-col v-if="authenticated" class="text-center mb-3 title text-secundario font-weight-bold">
-          <span>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</span> 
-      </v-col>
-
-      <!-- <UserSettingsMenu /> -->
-      <v-card class="pa-4" elevation="1" >
-        <v-tabs class="tabs" height="50px" align-with-title v-model="activeTab" slider-color="#32BCC3" color="#32BCC3">
-          <v-tab v-for="tab in tabs" :key="tab.index" :to="tab.path" exact color="#32BCC3">
-            <v-icon :color='tab.color' left>{{ tab.icon }}</v-icon>
-            {{ tab.name }}
-          </v-tab>
-        </v-tabs>
-        <router-view></router-view>
-      </v-card>
+      <UserSettingsMenu />
     </v-col>
-    <!------------------------ END PROFILE ----------------------->
+    <!------------------------ END PROFILE TABS ----------------------->
 
     </v-row>
   </v-container>

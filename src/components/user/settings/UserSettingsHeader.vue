@@ -56,10 +56,15 @@
         </v-col> -->
       </v-flex>
       <v-flex md2 order-md3 align-center class="d-flex justify-center">
-        <v-btn color="#32BCC3" elevation="0" dark :to="{path: '/settings'}">
-          <v-icon left>{{svg.pencil}}</v-icon>
-          Edit Profile
-        </v-btn>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-btn color="#32BCC3" v-on="on" elevation="0" dark :to="{path: '/settings'}">
+              <v-icon left>{{svg.pencil}}</v-icon>
+              Edit Profile
+            </v-btn>
+          </template>
+          <span>Edit Profile</span>
+        </v-tooltip>
         <!-- <router-link to="/settings/profile" class="ui button primary">Edit profile</router-link> -->
       </v-flex>
     </v-layout>

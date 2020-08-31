@@ -12,8 +12,9 @@
 
       <v-card>
         <v-card-title class="primario white--text">
-          Edit your profile
+          Edit your profile blah
         </v-card-title>
+        <span>Edit your profile</span>
 
         <!-------------------------  EDIT FORM COMPONENT ------------------->
         <!-- <AppEditForm :data="data" @click="dialog = false"></AppEditForm> -->
@@ -26,7 +27,7 @@
 
 <script>
 // COMPONENTS
-// import AppEditForm from '@/components/Profile/AppEditForm.vue'
+import AppEditForm from '../profile/AppEditForm'
 // import AppEditFormVue from './AppEditForm.vue';
 
 // VUEX
@@ -35,7 +36,7 @@ import { mdiPencilOutline } from '@mdi/js';
 
 export default {
   components: {
-       // AppEditForm
+    AppEditForm
   },
   // props: {
   //     data: {
@@ -44,6 +45,8 @@ export default {
   //     }
   // },
   data: () => ({
+    type: Object,
+     required: true,
       dialog: false,
       svg: {
           pencil: mdiPencil

@@ -13,7 +13,7 @@
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "core-js": "^3.6.5",
-    "firebase": "^7.17.1",
+    "firebase": "^7.19.1",
     "moment": "^2.27.0",
     "vue": "^2.6.11",
     "vue-i18n": "^8.21.0",

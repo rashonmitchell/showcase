@@ -1,12 +1,11 @@
 <template>
-    <v-card>
+    <v-card flat outlined>
         <v-container dark >
             <v-row>
                 <v-col offset="1" cols="10" class="center relative">
                     <v-avatar size="100">
                         <v-img class="card-img" src="https://www.gravatar.com/avatar/default?s=200&r=pg&d=mm"></v-img>
                     </v-avatar>
-
                     <!------------------ EDIT IMAGE BUTTON ------------------>
                     <div >
                         <input type="file" id="imageInput" hidden @change="handleImageChange">
@@ -21,47 +20,60 @@
                     </div>
                     <!------------------ EDIT IMAGE BUTTON ------------------>
                 </v-col>
-                <v-col offset="1" cols="10" color="teal lighten-3">
-                    <v-row>
+                <v-col offset="1" cols="10" color="#1F7087">
+                    <v-row dense>
                         <v-col>
                             <!------------------ PROFILE DATA ------------------>
-                            <div class="text-center mb-3 title text-secundario font-weight-bold">
+                            <!-- <div class="text-center mb-3 title text-secundario font-weight-bold">
                                 <span>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</span> 
-                            </div>
-                            <div  class="text-center mb-3 pr-5 pl-5 font-weight-regular">
-                                bio
-                            </div>
-                            <div class="text-center mb-3">
-                                <v-icon>{{svg.location}}</v-icon>
-                                <span>
-                                    location
-                                </span>
-                            </div>
-                            <div  class="text-center mb-3">
-                                <v-icon>{{svg.web}}</v-icon>
-                                <span>
-                                    web
-                                    <!-- <a :href="data.website" target="_blank">&nbsp;{{data.website}}</a> -->
-                                </span>
-                            </div>
-                            <div class="text-center">
-                                <v-icon>{{svg.calendar}}</v-icon>
-                                <span>
-                                    date joined: <br>
-                                    {{ moment(loggedInUser.createdAt).format('LL') }}
-                                    <!-- {{data.createdAt | day}} -->
-                                </span>
-                                <br>
-                                <!-- {{ moment(loggedInUser.createdAt).format("ddd, MMM Do YYYY") }} Mon, Aug 17th 2020 -->
-                            </div>
+                            </div> -->
+
+                            <v-list disabled two-line outlined rounded>
+                                <v-list-item-group color="primary" class="">
+                                    <v-list-item>
+                                        <v-list-item-icon>
+                                            <v-icon color="#32BCC3">mdi-card-account-details-outline</v-icon>
+                                        </v-list-item-icon>
+                                        <v-list-item-content>
+                                            <v-list-item-title>Bio:</v-list-item-title>
+                                            <v-list-item-subtitle># bio here</v-list-item-subtitle>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                    <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-icon>
+                                            <v-icon color="#32BCC3">{{svg.location}}</v-icon>
+                                        </v-list-item-icon>
+                                        <v-list-item-content>
+                                            <v-list-item-title>Location:</v-list-item-title>
+                                            <v-list-item-subtitle># location here</v-list-item-subtitle>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                    <v-divider></v-divider>
+                                    <v-list-item>
+                                        <v-list-item-icon>
+                                            <v-icon color="#32BCC3">{{svg.calendar}}</v-icon>
+                                        </v-list-item-icon>
+                                        <v-list-item-content>
+                                            <v-list-item-title>Joined:</v-list-item-title>
+                                            <v-list-item-subtitle>
+                                                {{ moment(loggedInUser.createdAt).format('LL') }}
+                                                <!-- {{data.createdAt | day}} -->
+                                                <!-- {{ moment(loggedInUser.createdAt).format("ddd, MMM Do YYYY") }} Mon, Aug 17th 2020 -->
+                                            </v-list-item-subtitle>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-list-item-group>
+                            </v-list>
+                            
                             <!------------------ END PROFILE DATA ------------------>
-                            <div class="mt-5">
+                            <!-- <div class="mt-5"> -->
                                 <!-- <div v-if="isAuthenticated && userCredentials.handle === data.handle"> -->
                                     <!--------------- EDIT PROFILE MODAL ----------------->
-                                    <ProfileEdit :data="data"></ProfileEdit>
+                                    <!-- <ProfileEdit :data="data"></ProfileEdit> -->
                                     <!---------------END EDIT PROFILE MODAL ------------->
                                 <!-- </div> -->
-                            </div>
+                            <!-- </div> -->
                         </v-col>
                     </v-row>
                 </v-col>
@@ -79,11 +91,6 @@ import { mapGetters } from 'vuex';
 export default {
     components: {
         ProfileEdit,
-    },
-    props: {
-        data: {
-            type: Object,
-        }
     },
     data: () => ({
         //date: loggedInUser.createdAt.toDate().toDateString(),
@@ -109,7 +116,6 @@ export default {
         }
     },
     computed: {
-        //...mapGetters(['isAuthenticated', 'userCredentials'])
         ...mapGetters('auth', ['authenticated', 'loggedInUser']),
     }
 }
