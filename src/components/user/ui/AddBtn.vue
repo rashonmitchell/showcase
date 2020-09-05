@@ -73,7 +73,8 @@
 </template>
 
 <script>
-import AppEditForm from '../profile/AppEditForm'
+import AppEditForm from '../yogurt/AppEditForm'
+import { EventBus } from '../../../eventbus'
 export default {
   components: {
     AppEditForm
@@ -87,6 +88,11 @@ export default {
     say(message) {
       alert(message)
     }
-  }
+  },
+  mounted() {
+    EventBus.$on('dialog', (value) => {
+        this.dialog = value
+      })
+  },
 }
 </script>

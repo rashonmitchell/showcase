@@ -83,7 +83,18 @@
             </v-col>
           </v-row>
         </v-form>
+        
       </v-card>
+      <v-flex sm12 md6 offset-md3>
+          <v-layout align-center justify-space-between>
+            <p class="caption my-3">
+              <a href="#">Privacy Policy</a>
+              |
+              <a href="#">Terms of Service</a>
+            </p>
+            <p class="caption my-3">Powered by <a href="#">StaffCircle</a></p>
+          </v-layout>
+        </v-flex>
     </v-col>
   </v-row>
 </template>
@@ -124,7 +135,7 @@ export default {
       }
     },
     reset () {
-      this.$refs.form.reset()
+      this.$refs.form.reset() && this.$refs.form.resetValidation()
     },
   }
 }

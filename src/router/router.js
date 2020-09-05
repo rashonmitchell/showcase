@@ -18,6 +18,9 @@ import UserProfileEmail from '../components/user/profile/UserProfileEmail'
 import UserProfileNotfication from '../components/user/profile/UserProfileNotfication'
 import UserDailyYogurt from '../components/user/profile/UserDailyYogurt'
 
+// App Settings
+import AppSettings from '../components/user/settings/AppSettings'
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -53,6 +56,11 @@ const router = new VueRouter({
                     path: "email",
                     Name: 'UserProfileEmail',
                     component: UserProfileEmail
+                },
+                {
+                    path: "general",
+                    Name: 'App Settings',
+                    component: AppSettings
                 }
               ]
         },

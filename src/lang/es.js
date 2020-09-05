@@ -1,6 +1,6 @@
 export default {
   appname: 'Yogur',
-  tagLine: '¡Bienvenido a yogur!',
+  tagLine: '¡Bienvenido a Yogur!',
   yogurtOfTheDay: 'yogur del día',
   read: 'Leer',
   bookmark: 'Marcador',
@@ -44,6 +44,9 @@ export default {
   twitter: 'Gorjeo',
   settings: 'Configuraciones',
   dashboard: 'Tablero',
+
+  // Create Yogurt
+  createYogurt: 'Create Yogurt',// update this
 
   // Profile Pages
   editPassword: 'Edit Password',// update this

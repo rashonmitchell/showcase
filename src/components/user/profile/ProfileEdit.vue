@@ -27,7 +27,7 @@
 
 <script>
 // COMPONENTS
-import AppEditForm from '../profile/AppEditForm'
+import AppEditForm from '../yogurt/AppEditForm'
 // import AppEditFormVue from './AppEditForm.vue';
 
 // VUEX

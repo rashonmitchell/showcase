@@ -31,7 +31,7 @@
       </v-col>
       <v-col cols="12" sm="8" >
           <v-card  class="mb-5" elevation="3">
-              
+             
           </v-card>
       </v-col>
       <!------------------------ END SCREAM LIST ----------------------->
@@ -66,7 +66,7 @@ export default {
 
   // },
   computed: {
-    ...mapGetters('auth', ['authenticated', 'loggedInUser']),
+    ...mapGetters('auth', ['authenticated', 'loggedInUser', 'user']),
   },
 
 }

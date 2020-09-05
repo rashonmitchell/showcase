@@ -1,6 +1,6 @@
 export default {
   appname: 'Yaourt',
-  tagLine: 'Bienvenue chez yaourt!',
+  tagLine: 'Bienvenue chez Yaourt!',
   yogurtOfTheDay: 'yaourt du jour',
   read: 'Lis',
   bookmark: 'Signet',
@@ -45,6 +45,9 @@ export default {
   twitter: 'Twitter',
   settings: 'Paramètres',
   dashboard: 'Tableau de bord',
+
+  // Create Yogurt
+  createYogurt: 'Create Yogurt',// update this
 
   // Profile Pages
   editPassword: 'Edit Password',// update this

@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-4" outlined >
-    <v-tabs class="tabs" height="50px" align-with-title v-model="activeTab" slider-color="#32BCC3" color="#32BCC3">
+    <v-tabs class="tabs" height="50px" align-with-title v-model="activeTab" show-arrows slider-color="#32BCC3" color="#32BCC3">
       <v-divider></v-divider>
       <v-tab v-for="tab in tabs" :key="tab.index" :to="tab.path" exact color="#32BCC3">
         <v-icon :color='tab.color' left>{{ tab.icon }}</v-icon>
@@ -22,7 +22,7 @@
           { index: 3, name: "Change Email", path: '/settings/email', icon: 'mdi-email-edit-outline', color: "pink darken-2"   },
           { index: 4, name: "Notfication", path: '/settings/password', icon: 'mdi-bell-outline', color: "blue darken-2"   },
           { index: 5, name: "Daily Yogurt", path: '/settings/email', icon: 'mdi-calendar-month-outline', color: "yellow darken-2"   },
-          { index: 6, name: "App Settings", path: '/settings/email', icon: 'mdi-cogs', color: "orange darken-2"   }
+          { index: 6, name: "App Settings", path: '/settings/general', icon: 'mdi-cogs', color: "orange darken-2"   }
         ]
       };
     },

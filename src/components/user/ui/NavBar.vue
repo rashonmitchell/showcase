@@ -58,32 +58,18 @@
         </v-list>
       </v-menu>
     </v-toolbar-items>
-    <v-btn text><LocaleChanger /></v-btn>
-    <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on" icon @click="toggleThemeDarkMode">
-          <v-icon :style="{transform: `rotate(${$vuetify.theme.dark ? 0 : -190 }deg)`}">
-            {{ icons.mdiThemeLightDark }}
-          </v-icon>
-        </v-btn>
-      </template>
-      <span>{{ $t(($vuetify.theme.dark ? 'light' : 'dark') + 'Mode') }}</span>
-     </v-tooltip>
+    
   </v-app-bar>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { mdiThemeLightDark } from '@mdi/js'
-import LocaleChanger from '../../LocaleChanger'
 import LogoutModal from '../../auth/LogoutModal'
 export default {
   components: {
-    LocaleChanger,
     LogoutModal
   },
   data() {
     return {
-      icons: { mdiThemeLightDark },
       menuItems: [
         { title: `${this.$t('signUp')}`, path: '/register', icon: 'person_add'},
         { title: `${this.$t('signIn')}`, path: '/login', icon: 'lock_open' }
@@ -99,9 +85,6 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['authStateChangeHandler', 'signOutAction']),
-    toggleThemeDarkMode () {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-    },
   },
   created() {
     const handler = this.authStateChangeHandler;

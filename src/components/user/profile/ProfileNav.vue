@@ -3,16 +3,20 @@
         <v-container dark >
             <v-row>
                 <v-col offset="1" cols="10" class="center relative">
-                    <v-avatar size="100">
-                        <v-img class="card-img" src="https://www.gravatar.com/avatar/default?s=200&r=pg&d=mm"></v-img>
+                    <v-avatar v-if="loggedInUser.providerData[0].photoURL !== null || loggedInUser.photo === null" size="100">
+                        <img v-bind:src="loggedInUser.providerData[0].photoURL || loggedInUser.photo" >
                     </v-avatar>
+                    <!-- <v-avatar size="100">
+                        <v-img class="card-img" src="https://www.gravatar.com/avatar/default?s=200&r=pg&d=mm"></v-img>
+                    </v-avatar> -->
                     <!------------------ EDIT IMAGE BUTTON ------------------>
                     <div >
-                        <input type="file" id="imageInput" hidden @change="handleImageChange">
+                        <input type="file" id="imageInput" hidden accept="image/*" @change="handleImageChange">
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on }">
-                                <v-btn class="mx-2" fab small color="#32BCC3" absolute right bottom @click="editImage" v-on="on" dark>
+                                <v-btn class="mx-2" fab small color="#32BCC3" :loading="isSelecting" absolute right bottom @click="editImage" v-on="on" dark>
                                     <v-icon dark>{{svg.camera}}</v-icon>
+                                    {{ buttonText }}
                                 </v-btn>
                             </template>
                             <span>Edit Profile Image</span>
@@ -95,6 +99,9 @@ export default {
     data: () => ({
         //date: loggedInUser.createdAt.toDate().toDateString(),
         moment: moment,
+        defaultButtonText: '',
+        selectedFile: null,
+        isSelecting: false,
         svg: {
             location: mdiMapMarker,
             web: mdiWeb,
@@ -113,10 +120,25 @@ export default {
         editImage() {
             const imageInput = document.getElementById('imageInput');
             imageInput.click();
+        },
+        onButtonClick() {
+            this.isSelecting = true
+            window.addEventListener('focus', () => {
+                this.isSelecting = false
+            }, { once: true })
+
+            this.$refs.uploader.click()
+        },
+        onFileChanged(e) {
+            this.selectedFile = e.target.files[0]
+            // do something
         }
     },
     computed: {
         ...mapGetters('auth', ['authenticated', 'loggedInUser']),
+        buttonText() {
+            return this.selectedFile ? this.selectedFile.name : this.defaultButtonText
+        }
     }
 }
 </script>

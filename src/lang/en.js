@@ -1,6 +1,6 @@
 export default {
   appname: 'Yogurt',
-  tagLine: 'Welcome to yogurt!',
+  tagLine: 'Welcome to Yogurt!',
   yogurtOfTheDay: 'yogurt of the day',
   read: 'Read',
   bookmark: 'Bookmark',
@@ -45,6 +45,9 @@ export default {
   twitter: 'Twitter',
   settings: 'Settings',
   dashboard: 'Dashboard',
+
+  // Create Yogurt
+  createYogurt: 'Create Yogurt',
 
   // Profile Pages
   editPassword: 'Edit Password',

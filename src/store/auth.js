@@ -15,7 +15,7 @@ export default {
     notifications: []
   },
   getters: {
-    user: state => state.user,
+    user: state => state.loggedInUser,
     error: state => state.error,
     authenticated: state => state.authenticated,
     loggedInUser: state => state.loggedInUser,
@@ -26,6 +26,7 @@ export default {
     //setUser: state => state.user = firebase.auth().currentUser,
     setUser: (state, payload) => state.user = payload,
     //removeUser: state => state.user = null,
+    // updateUser: (state, user) => state.loggedInUser = user,
     updateAuthenticated: (state, authenticated) => state.authenticated = authenticated,
     updateLoggedInUser: (state, user) => state.loggedInUser = user,
     updateLoggingIn: (state, status) => state.loggingIn = status,

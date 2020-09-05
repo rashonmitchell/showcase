@@ -1,13 +1,13 @@
 <template>
   <v-container fluid>
-    <AddBtn />
+    <AddBtn></AddBtn>
     <v-layout row wrap class="text-center">
       <v-flex xs12  mt-5>
         <h1> {{ $t('tagLine') }}</h1>
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3>
         <blockquote class="blockquote text-xs-center">
-          It's an application for daily affirmations<br>
+          Our culture is built one thought at a time.<br>
         </blockquote>
       </v-flex>
       <!-- <v-flex xs12 sm6 offset-sm3 class="text-xs-center" mt-5>
@@ -95,7 +95,7 @@
         </v-list-item>
       </v-card-actions>
     </v-card>
-    <v-flex xs12 sm6 offset-sm3 mt-3>
+    <!-- <v-flex xs12 sm6 offset-sm3 mt-3>
       <blockquote class="blockquote text-xs-center">
         It is a long established fact that a reader will be distracted by the readable content of a 
         page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
@@ -117,7 +117,7 @@
         web sites still in their infancy. Various versions have evolved over the years, sometimes 
         by accident, sometimes on purpose (injected humour and the like).
       </blockquote>
-    </v-flex>
+    </v-flex> -->
 
     
   </v-container>

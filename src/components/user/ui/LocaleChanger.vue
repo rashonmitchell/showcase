@@ -1,15 +1,28 @@
 <template>
   <div class="LocaleChanger">
     <v-menu transition="slide-y-transition" bottom>
+      
       <template v-slot:activator="{ on }">
         <div v-on="on" class="current">
-          <img :src="require(`../assets/flags/${langs[current]}.png`)" :alt="langs[current]">
+          <!-- ICON START -->
+          <template>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-icon v-on="on" left>mdi-translate</v-icon>
+              </template>
+              Language Translate
+            </v-tooltip>
+          </template>
+          
+          <!-- ICON END -->
+          <img :src="require(`../../../assets/flags/${langs[current]}.png`)" :alt="langs[current]">
+          <span class="pl-3"> {{ langs[current] }}</span>
         </div>
       </template>
       <v-list class="LocaleChangerMenu">
         <v-list-item v-for="(lang, i) in langs" :key="i" @click="changeLang(lang, i)">
           <v-list-item-content>
-            <img :src="require(`../assets/flags/${langs[i]}.png`)" :alt="lang">
+            <img :src="require(`../../../assets/flags/${langs[i]}.png`)" :alt="lang" :value="lang">
             <span>{{ lang }}</span>
           </v-list-item-content>
         </v-list-item>
@@ -19,14 +32,19 @@
 </template>
 
 <script>
-import { languages } from '../lang'
+import { languages } from '../../../lang'
 
 export default {
   name: 'LocaleChanger',
   data () {
     return {
-      langs: languages,
       current: 0,
+      languages: [
+          { flag: 'us', language: 'en', title: 'English' },
+          { flag: 'es', language: 'es', title: 'Español' },
+          { flag: 'fr', language: 'fr', title: 'French' },
+        ],
+      langs: languages
     }
   },
   methods: {
