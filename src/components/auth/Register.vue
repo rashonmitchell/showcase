@@ -14,7 +14,7 @@
                               v-model="displayName"
                               :label="$t('fullName')"
                               required
-                          ></v-text-field>
+                          ></v-text-field> 
                           <v-text-field
                               v-model="email"
                               :rules="emailRules"

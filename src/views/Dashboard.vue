@@ -7,8 +7,13 @@
 </template>
 <template>
   <v-container fluid pa-3 style="min-height: 100vh;">
-    <AddBtn />
+    <AddBtn @projectAdded="snackbar = true"/>
     <UserSettingsHeader />
+
+    <v-snackbar v-model="snackbar" :timeout="6000" top color="#42b883">
+      <span>Awesome! You successfully added a new yogurt.</span>
+      <v-btn text color="white" @click="snackbar = false">CLOSE</v-btn>
+    </v-snackbar>
     <v-row>
 
       <!------------------------ SCREAM LIST ----------------------->
@@ -62,9 +67,11 @@ export default {
     UserSettingsHeader,
     ProfileNav,
   },
-  // data: function(){
-
-  // },
+  data() {
+    return{
+      snackbar: false
+    }
+  },
   computed: {
     ...mapGetters('auth', ['authenticated', 'loggedInUser', 'user']),
   },

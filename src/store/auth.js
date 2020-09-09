@@ -294,5 +294,16 @@ export default {
       }
       console.log(payload.email, 'payload email')
     },
+
+    // User create yogurt
+    addYogurt: function(payload) {
+      db.collection('users/'+this.user.uid+'/users-yogurts')
+      .doc(this.user.uid)
+      .collection("users-yogurts")
+      .add({
+        name: payload,
+        createAt: firebase.firestore.FieldValue.serverTimestamp()
+      })
+    },
   }
 }

@@ -16,10 +16,16 @@
                                     <v-icon slot="prepend">mdi-file-document-edit-outline</v-icon>
                                 </v-text-field>
                             </v-col>
+                            <!-- <v-col cols="12">
+                                <v-text-field label="Your Location" type="text" required v-model="userDetails.location" :loading="loadingForm" color="cyan">
+                                <v-text-field label="Your Location" type="text" color="cyan">
+                                </v-text-field>
+                            </v-col> -->
+                            <!-- Date & Time -->
                             <v-col cols="12" md="6">
                                 <v-menu offset-y min-width="290px" :nudge-right="40" :return-value.sync="computedDateFormattedMomentjs">
-                                    <template v-slot:activator="{ on }">
-                                        <v-text-field label="Set a date" :rules="dateRules" v-on="on" :value="computedDateFormattedMomentjs" prepend-icon="mdi-calendar"></v-text-field>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-text-field label="Set a date" :rules="dateRules" v-bind="attrs" v-on="on" :value="computedDateFormattedMomentjs" prepend-icon="mdi-calendar"></v-text-field>
                                     </template>
                                      <v-date-picker v-model="due"></v-date-picker>
                                 </v-menu>
@@ -82,7 +88,7 @@
                                     
                                     type="submit"
                                     class="text-right mr-4"
-                                    @click="dialog = false"
+                                    @click="submit"
                                 > 
                                     {{ $t('createYogurt')}}
                                 </v-btn>
@@ -98,7 +104,9 @@
                                 
                             </v-col>
                         </v-row>
-                    </v-container>                    
+                    </v-container>
+                    <!-- <v-btn color="cyan darken-1" :disabled="loadingForm" text @click.stop="$emit('click')">Close</v-btn> -->
+                    
                 </v-card-actions>
             </v-form>
         </v-col>
@@ -107,6 +115,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { format, parseISO } from 'date-fns'
 import moment from 'moment';
 import { EventBus } from '../../../eventbus'
 export default {
@@ -116,10 +125,15 @@ export default {
         // mask: '##:##',
         value: '',
         //time: '',
+        //date: '',
+        // dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
+        // timeFormatted: (new SimpleDateFormat("hh:mm a")),
         title: '',
         content: '',
+        menuTime: false,
         loading: false,
         due: '',
+        userId: '',
         dateRules: [
             v =>(v.length >= 4) || 'Invalid entry. Click to pick a date'
         ],
@@ -130,28 +144,48 @@ export default {
         //     t =>(t.length != null) || 'Invalid entry. Click to pick a time'
         // ],
     }),
+    // watch: {
+    //     date (val) {
+    //         this.dateFormatted = this.formatDate(this.date)
+    //     },
+    // },
     computed: {
         ...mapGetters('auth', ['authenticated', 'loggedInUser', 'user']),
         computedDateFormattedMomentjs() {
             return this.due ? moment(this.due).format('dddd, MMMM Do YYYY') : ''
         },
+        formattedDate() {
+            return this.due ? format(this.due, 'EEEE, MMMM do yyyy') : ''
+        },
+        computedDateFormatted () {
+            return this.formatDate(this.date)
+        },
     },
     methods: {
         submit(){
-            console.log(this.title, this.content)
-            // if(this.$refs.form.validate()){
-            //     console.log(this.title, this.content, this.due)
-            // }
-            //this.dialog = false
+            if(this.$refs.form.validate()){
+                console.log(this.title, this.content, this.due)
+            }
+            this.dialog = false
         },
-        addYogurt() {},
         //...mapActions('auth', ['signUpAction']),
         // addYogurt: function () {
         //     this.$emit("addYogurt", this.meetingName);
         //     this.meetingName = null;
         //     this.$refs.meetingName.focus();
         // },
-        
+        formatDate (date) {
+            if (!date) return null
+
+            const [year, month, day] = date.split('-')
+            return `${month}/${day}/${year}`
+        },
+        parseDate (date) {
+            if (!date) return null
+
+            const [month, day, year] = date.split('/')
+            return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+        },
         // addYogurt() {
         //     if(this.$refs.form) {
         //         this.loading = true;

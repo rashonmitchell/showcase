@@ -1,6 +1,6 @@
 <template>
-    <v-card flat outlined>
-        <v-container dark >
+    <v-card flat outlined color="#35495e">
+        <v-container dark color="#35495e">
             <v-row>
                 <v-col offset="1" cols="10" class="center relative">
                     <v-avatar v-if="loggedInUser.providerData[0].photoURL !== null || loggedInUser.photo === null" size="100">
@@ -32,11 +32,11 @@
                                 <span>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</span> 
                             </div> -->
 
-                            <v-list disabled two-line outlined rounded>
+                            <v-list disabled two-line outlined rounded color="#42b883">
                                 <v-list-item-group color="primary" class="">
                                     <v-list-item>
                                         <v-list-item-icon>
-                                            <v-icon color="#32BCC3">mdi-card-account-details-outline</v-icon>
+                                            <v-icon dark>mdi-card-account-details-outline</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-content>
                                             <v-list-item-title>Bio:</v-list-item-title>
@@ -46,7 +46,7 @@
                                     <v-divider></v-divider>
                                     <v-list-item>
                                         <v-list-item-icon>
-                                            <v-icon color="#32BCC3">{{svg.location}}</v-icon>
+                                            <v-icon dark>{{svg.location}}</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-content>
                                             <v-list-item-title>Location:</v-list-item-title>
@@ -56,7 +56,7 @@
                                     <v-divider></v-divider>
                                     <v-list-item>
                                         <v-list-item-icon>
-                                            <v-icon color="#32BCC3">{{svg.calendar}}</v-icon>
+                                            <v-icon dark>{{svg.calendar}}</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-content>
                                             <v-list-item-title>Joined:</v-list-item-title>

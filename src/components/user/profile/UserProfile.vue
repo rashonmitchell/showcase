@@ -1,7 +1,7 @@
 <template>
-    <v-row class="d-flex ">
+    <v-row class="d-flex " >
         <v-col>
-            <v-card class="mx-auto" flat>
+            <v-card class="mx-auto" flat >
                 <h3 class="font-weight-light px-4 pt-4 text-center " color="#32BCC3">
                     {{ $t('editProfile') }}
                 </h3>
@@ -10,7 +10,7 @@
                         {{ this.$store.state.error }}
                     </v-snackbar> -->
                     <v-row>
-                        <v-col>
+                        <v-col color="#35495e">
                             <v-text-field
                                 :placeholder="loggedInUser.displayName"
                                 :counter="10"
