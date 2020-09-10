@@ -60,9 +60,10 @@
                 </v-list-tile-action>
                 <v-list-tile-content>
                   <v-list-tile-title>Attendees:</v-list-tile-title>
-                  <template v-for="(attendee, index) in item.attendees">
-                    <v-list-tile-sub-title>{{ attendee }}</v-list-tile-sub-title>
-                  </template>
+                  <v-list-tile-sub-title>{{ attendee }}</v-list-tile-sub-title>
+                  <!-- <template v-for="(attendee, index) in item.attendees" >
+                    <v-list-tile-sub-title v-bind:key="index">{{ attendee }}</v-list-tile-sub-title>
+                  </template> -->
                 </v-list-tile-content>
               </v-list-tile>
             </v-list>
@@ -74,6 +75,7 @@
 
 <script>
 export default {
+    name: 'Template',
     data: () => ({
     rowsPerPageItems: [4, 8, 12],
     pagination: {
@@ -140,7 +142,7 @@ export default {
   methods: {
     sort(items, index, isDescending) {
       var sorted = false
-      
+      let temp;
       while(!sorted) {
         sorted = true
         for (var i = 0; i < items.length; i++) {

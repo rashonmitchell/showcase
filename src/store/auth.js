@@ -6,6 +6,7 @@ export default {
   namespaced: true,
   state: {
     user: null,
+    userYogurts: null,
     // status: null,
     error: null,
     authenticated: false,
@@ -52,8 +53,6 @@ export default {
     removeNotification: (context, notification) => context.commit('removeNotification', notification),
     updateAuthenticated: (context, authenticated) => context.commit('updateAuthenticated', authenticated),
     async authStateChangeHandler (context, user) {
-      // let currentUser = firebase.auth().currentUser;
-      // console.log(currentUser, 'currentUser')
       if (user) {
 
         const userData = {
@@ -62,9 +61,7 @@ export default {
           displayName: user.displayName,
           photoURL: user.photoURL,
           createdAt: user.metadata.creationTime,
-          providerData: user.providerData,
-          // providerData: user.providerData[0].providerId
-          //displayName: firebase.auth().currentUser.displayName,
+          providerData: user.providerData
         }
         // .then(() => {
           // db.collection('users').update({
@@ -75,10 +72,30 @@ export default {
           //   providerData: user.providerData,
           // })
         // })
-        //userData.createdAt.toDate()
         
-        // console.log(user, 'user console log')
-        console.log(userData, 'userData')
+        console.log(userData, 'userData'),
+        // db.collection("users")
+        //   .doc(user.uid)
+        //   .collection("yogurt")
+         //.orderBy("createAt") //firebase method of sorting
+        db.collection('users/'+this.uid+'/users-yogurts').onSnapshot(snapshot => {
+          const snapData = [];
+          snapshot.forEach( doc => {
+            snapData.push({
+              id: doc.id,
+              title: doc.data().title
+              
+            });
+          });
+          // this.meetings = snapData.sort((a, b) => {
+          //   if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          //       return 1;
+          //     } else {
+          //       return -1;
+          //     }
+          //   });
+          });
+      
 
         context.commit('updateAuthenticated', true)
         context.commit('updateLoggedInUser', userData)
@@ -297,7 +314,7 @@ export default {
 
     // User create yogurt
     addYogurt: function(payload) {
-      db.collection('users/'+this.user.uid+'/users-yogurts')
+      db.collection('users/'+this.user.uid+'/user_yogurts')
       .doc(this.user.uid)
       .collection("users-yogurts")
       .add({

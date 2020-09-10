@@ -30,9 +30,13 @@
           <v-toolbar-title class="text-center">Create a yogurt</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
+        <v-snackbar @yogurtError="snackbar = true" v-model="snackbar" :timeout="6000" top color="error white--text">
+          <span>The form can't be submitted until all fields are filled out.</span>
+          <v-btn text color="white" @click="snackbar = false">CLOSE</v-btn>
+        </v-snackbar>
         <!-------------------------  END ADD FORM TOOLBAR ------------------>
         <!-------------------------  ADD FORM  ---------------------->
-        <v-form @submit.prevent="addYogurt" ref="form" name="createYogurt">
+        <v-form @submit.prevent="addYogurt" ref="form" name="createYogurt" v-model="valid" lazy-validation>
           <v-card-text>
             <v-container>
               <v-row class="d-flex justify-center align-center mt-10">
@@ -109,6 +113,7 @@
                     outlined
                     color="#32BCC3"
                     :loading="loading"
+                    :disabled="!valid"
                     type="submit"
                     class="text-right mr-4"
                   > 
@@ -151,7 +156,9 @@ export default {
   },
    data: () => ({
     type: Object,
+    snackbar: false,
     required: true,
+    valid: true,
     dialog: false,
     loading: false,
     title: '',
@@ -160,10 +167,10 @@ export default {
     data: '',
     time: '',
     dateRules: [
-      v =>(v.length >= 4) || 'Invalid entry. Click to pick a date'
+      v => !!v || 'Invalid entry. Click to pick a date'
     ],
     inputRules: [
-      v =>(v.length >= 4) || 'Minimum length is required of 4 characters'
+      v => !!v || 'Minimum length is required of 4 characters'
     ],
   }),
   computed: {
@@ -176,7 +183,7 @@ export default {
     addYogurt() {
       if(this.$refs.form.validate()) {
         this.loading = true;
-        const collectionRef = db.collection('users/'+this.user.uid+'/users-yogurts');
+        const collectionRef = db.collection('users/'+this.user.uid+'/user_yogurts');
         
         const yogurt = {
           title: this.title,
@@ -190,9 +197,10 @@ export default {
           this.loading = false;
           this.dialog = false;
           this.formReset();
-          this.$emit('projectAdded');
+          this.$emit('yogurtAdded');
         });
       } else {
+        this.$emit('yogurtError')
         alert('The form can\'t be submitted until all fields are filled out.')
       }
     },

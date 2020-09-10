@@ -9,6 +9,7 @@ import ForgotPassword from '../components/auth/ForgotPassword.vue'
 // Views
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard'
+import Template from '../components/user/yogurt/Template'
 
 // Users
 import UserSettings from '../components/user/settings/UserSettings'
@@ -69,10 +70,11 @@ const router = new VueRouter({
         //     name: 'Password & Security',
         //     component: UserProfilePassword
         // },
-        // {
-        //     path: "/settings/email",
-        //     component: UserProfileEmail
-        // },
+        {
+            path: "/temp",
+            name: 'Template',
+            component: Template
+        },
         {
             path: '/settings/notfication',
             component: UserProfileNotfication

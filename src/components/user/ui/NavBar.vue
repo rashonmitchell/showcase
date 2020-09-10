@@ -72,7 +72,8 @@ export default {
     return {
       menuItems: [
         { title: `${this.$t('signUp')}`, path: '/register', icon: 'person_add'},
-        { title: `${this.$t('signIn')}`, path: '/login', icon: 'lock_open' }
+        { title: `${this.$t('signIn')}`, path: '/login', icon: 'lock_open' },
+        { title: 'temp', path: '/temp', icon: 'lock_open' }
      ],
      menuLoggedIn: [
        { title: `${this.$t('dashboard')}`, path: '/dashboard', icon: 'description', divider: true },
