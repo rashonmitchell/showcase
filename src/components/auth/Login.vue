@@ -85,14 +85,14 @@
         </v-form>
         
       </v-card>
-      <v-flex sm12 md6 offset-md3>
-          <v-layout align-center justify-space-between>
-            <p class="caption my-3">
+      <v-flex sm12 md6 offset-md3 >
+          <v-layout align-center justify-space-between class="mx-3">
+            <p class="caption my-3" col-6 cols="6">
               <a href="#">Privacy Policy</a>
               |
               <a href="#">Terms of Service</a>
             </p>
-            <p class="caption my-3">Powered by <a href="#">StaffCircle</a></p>
+            <p class="caption my-3" col-6 cols="6"> Powered by <a href="#">#StaffCircle</a></p>
           </v-layout>
         </v-flex>
     </v-col>

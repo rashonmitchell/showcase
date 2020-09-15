@@ -50,22 +50,21 @@
           <v-card  class="mb-5" elevation="3">
              
           </v-card>
-          <!-- <v-data-iterator
-            content-tag="v-layout"
-            row
-            wrap
-            v-for="item in userYogurts" :key="item.title"
-            :rows-per-page-items="[4]"
-          >
+          <v-container fluid grid-list-md>
+            <v-row
+              content-tag="v-layout"
+              wrap
+            >
             <v-flex
-              slot="item"
-              xs12
-              sm6
-              md5
-              lg3
-            > -->
-          <v-card class="cal-item" v-for="item in userYogurts" :key="item.title">
-            <v-card-title>
+            v-for="item in userYogurts" :key="item.title"
+            class="ma-3"
+            xs12
+            sm6
+            md3
+            lg6
+            > 
+          <v-card class="cal-item" >
+            <v-card-title class="cal-item-title"> 
               <h4>{{ item.title }}</h4>
               <v-spacer></v-spacer>
               <v-tooltip bottom>
@@ -83,27 +82,27 @@
             </v-card-title>
             <v-divider></v-divider>
             <v-list flat>
-              <v-list-tile>
-                <v-list-tile-action>
+              <v-list-tile class="cal-item-list-tile">
+                <v-list-tile-action class="cal-item-list-tile-action">
                   <v-icon color="indigo">mdi-calendar</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>{{ item.date }}</v-list-tile-content>
                 <v-list-tile-content class="align-end">time</v-list-tile-content>
               </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-action>
+              <v-list-tile class="cal-item-list-tile">
+                <v-list-tile-action class="cal-item-list-tile-action">
                   <v-icon color="indigo">access_time</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>location</v-list-tile-content>
               </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-action>
+              <v-list-tile class="cal-item-list-tile">
+                <v-list-tile-action class="cal-item-list-tile-action">
                   <v-icon color="indigo">subject</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>{{ item.content }}</v-list-tile-content>
               </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-action>
+              <v-list-tile class="cal-item-list-tile">
+                <v-list-tile-action class="cal-item-list-tile-action">
                   <v-icon color="indigo">group</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
@@ -115,8 +114,9 @@
               </v-list-tile>
             </v-list>
           </v-card>
-        <!-- </v-flex>
-      </v-data-iterator> -->
+        </v-flex>
+            </v-row>
+          </v-container>
       </v-col>
       <!------------------------ END SCREAM LIST ----------------------->
 
@@ -198,6 +198,33 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
+.cal-item .btn {
+  margin: 0 5px;
+  height: 28px;
+  width: 28px;
+}
+.cal-item .btn i {
+  font-size: 22px;  
+}
+
+.cal-item-title {
+  padding: 16px 16px
+}
+
+.cal-item-list-tile {
+  height: unset!important;
+  padding: 10px 16px;
+}
+
+.cal-item-list-tile-action {
+  align-self: flex-start;
+  min-width: unset;
+  padding-right: 16px;
+}
+
+.cal-item .color-2 {
+  background-color: #F44336;
+}
 </style>
