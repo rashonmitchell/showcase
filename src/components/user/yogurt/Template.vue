@@ -149,7 +149,7 @@ export default {
           if (items[i + 1]) {
             const date1 = new Date(Date.parse(items[i].rawDate))
             const date2 = new Date(Date.parse(items[i + 1].rawDate))
-            console.log(date1)
+            //console.log(date1)
             if (date1 - date2 > 0) {
               sorted = false
               temp = items[i + 1]

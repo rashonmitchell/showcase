@@ -21,113 +21,158 @@
         <v-btn text color="#42b983" class="display-1 my-8" @click="openDialog">Create a yogurt</v-btn>
       </v-layout>
     </v-row>
-    <v-row>
 
+    <v-row>
       <!------------------------ SCREAM LIST ----------------------->
       <v-col cols="12" sm="8">
-        
-        <v-row >
-          
-        </v-row>
-        <v-col v-if="authenticated">
-            <!-- <p>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</p>
-            <h2>{{ loggedInUser.email }}</h2> -->
-        </v-col>
-          <!------------------------ SCREAM ITEM ----------------------->
-          <!-- <v-card class="mb-5" v-for="userYogurt in userYogurts" :key="userYogurt.title">
-            {{ userYogurt }} -->
-            <!-- <div 
-              :height=180
-              :width=500
-              :speed=2
-              primaryColor="#f3f3f3"
-              secondaryColor="#ecebeb">hahaha</div> -->
-          <!-- </v-card> -->
-          <!------------------------ END SCREAM ITEM ----------------------->
-
-      </v-col>
-      <v-col cols="12" sm="8" >
-          <v-card  class="mb-5" elevation="3">
-             
-          </v-card>
-          <v-container fluid grid-list-md>
-            <v-row
-              content-tag="v-layout"
-              wrap
-            >
-            <v-flex
-            v-for="item in userYogurts" :key="item.title"
-            class="ma-3"
-            xs12
-            sm6
-            md3
-            lg6
-            > 
-          <v-card class="cal-item" >
-            <v-card-title class="cal-item-title"> 
-              <h4>{{ item.title }}</h4>
-              <v-spacer></v-spacer>
-              <v-tooltip bottom>
-                <v-btn text icon dark color="red" slot="activator">
-                  <v-icon>delete</v-icon>
-                </v-btn>
-                <span>Remove from Calendar</span>
-              </v-tooltip>
-              <v-tooltip bottom>
-                <v-btn text icon dark color="green" slot="activator">
-                  <v-icon>sync</v-icon>
-                </v-btn>
-                <span>Sync to Google Calendar</span>
-              </v-tooltip>
-            </v-card-title>
-            <v-divider></v-divider>
-            <v-list flat>
-              <v-list-tile class="cal-item-list-tile">
-                <v-list-tile-action class="cal-item-list-tile-action">
-                  <v-icon color="indigo">mdi-calendar</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>{{ item.date }}</v-list-tile-content>
-                <v-list-tile-content class="align-end">time</v-list-tile-content>
-              </v-list-tile>
-              <v-list-tile class="cal-item-list-tile">
-                <v-list-tile-action class="cal-item-list-tile-action">
-                  <v-icon color="indigo">access_time</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>location</v-list-tile-content>
-              </v-list-tile>
-              <v-list-tile class="cal-item-list-tile">
-                <v-list-tile-action class="cal-item-list-tile-action">
-                  <v-icon color="indigo">subject</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>{{ item.content }}</v-list-tile-content>
-              </v-list-tile>
-              <v-list-tile class="cal-item-list-tile">
-                <v-list-tile-action class="cal-item-list-tile-action">
-                  <v-icon color="indigo">group</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                  <v-list-tile-title>Attendees:</v-list-tile-title>
-                  <template >
-                    <v-list-tile-sub-title>{{ user.displayName }}</v-list-tile-sub-title>
+        <v-container fluid grid-list-md class="card-container">
+          <v-layout row wrap>
+            <v-flex d-flex xs12 sm6 v-for="item in userYogurts" :key="item.title" >
+              <v-card class="flex-grow-1 cal-item">
+                <v-card-title primary class="cal-item-title">
+                  <h4>{{ item.title }}</h4>
+                <v-spacer></v-spacer>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn text icon dark color="red" v-on="on" >
+                      <v-icon>delete</v-icon>
+                    </v-btn>
                   </template>
-                </v-list-tile-content>
-              </v-list-tile>
-            </v-list>
-          </v-card>
-        </v-flex>
-            </v-row>
-          </v-container>
+                  <span>Remove from Calendar</span>
+                </v-tooltip>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn text icon dark color="green" v-on="on" >
+                      <v-icon>sync</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Sync to Google Calendar</span>
+                </v-tooltip>
+                </v-card-title>
+                <v-divider></v-divider>
+                <v-list dense>
+                  <v-list-item class="cal-item-list-tile">
+                    <v-list-item-action class="cal-item-list-tile-action">
+                      <v-icon color="indigo">mdi-calendar</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>{{ item.date }}</v-list-item-content>
+                    <!-- <v-list-item-content class="align-end">17:00 - 18:00</v-list-item-content> -->
+                  </v-list-item>
+                  <v-list-item class="cal-item-list-tile">
+                    <v-list-item-action class="cal-item-list-tile-action">
+                      <v-icon color="indigo">access_time</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>17:00 - 18:00</v-list-item-content>
+                  </v-list-item>
+                  <v-list-item class="cal-item-list-tile">
+                    <v-list-item-action class="cal-item-list-tile-action">
+                      <v-icon color="indigo">subject</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>{{ item.content }}</v-list-item-content>
+                  </v-list-item>
+                  <v-list-item class="cal-item-list-tile">
+                    <v-list-item-action class="cal-item-list-tile-action">
+                      <v-icon color="indigo">group</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                      <v-list-item-title>Attendees:</v-list-item-title>
+                      <template >
+                        <v-list-item-subtitle>{{ user.displayName }}</v-list-item-subtitle>
+                      </template>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+                <!-- <div class="overflow-hidden">
+                  <div class="text-center mb-2">
+                    <v-btn
+                      text
+                      color="deep-purple"
+                      @click="showNav = !showNav"
+                    >
+                      Toggle Nav
+                    </v-btn>
+                  </div>
+
+                  <v-bottom-navigation
+                    v-model="activeBtn"
+                    :input-value="showNav"
+                    color="indigo"
+                  >
+                    <v-btn>
+                      <span>Recents</span>
+                      <v-icon>mdi-history</v-icon>
+                    </v-btn>
+
+                    <v-btn>
+                      <span>Favorites</span>
+                      <v-icon>mdi-heart</v-icon>
+                    </v-btn>
+
+                    <v-btn>
+                      <span>Nearby</span>
+                      <v-icon>mdi-map-marker</v-icon>
+                    </v-btn>
+                  </v-bottom-navigation>
+                </div> -->
+                <v-card-actions>
+                  <v-btn text>Share</v-btn>
+                  <v-btn
+                    color="purple"
+                    text
+                  >
+                    Explore
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    icon
+                    @click="show = !show"
+                  >
+                    <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                  </v-btn>
+                </v-card-actions>
+                <v-expand-transition>
+                  <div v-show="show">
+                    <v-divider></v-divider>
+                    <v-card-text>
+                      I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                    </v-card-text>
+                  </div>
+                </v-expand-transition>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-col>
+      
+      <v-col v-if="authenticated">
+          <!-- <p>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</p>
+          <h2>{{ loggedInUser.email }}</h2> -->
+      </v-col>
+      <!------------------------ SCREAM ITEM ----------------------->
+      <!-- <v-card class="mb-5" v-for="userYogurt in userYogurts" :key="userYogurt.title">
+        {{ userYogurt }} -->
+        <!-- <div 
+          :height=180
+          :width=500
+          :speed=2
+          primaryColor="#f3f3f3"
+          secondaryColor="#ecebeb">hahaha</div> -->
+      <!-- </v-card> -->
+      <!------------------------ END SCREAM ITEM ----------------------->
+      <v-col cols="12" sm="8">
+        <!-- <v-card  class="mb-5" elevation="3">
+        </v-card> -->
       </v-col>
       <!------------------------ END SCREAM LIST ----------------------->
 
 
       <!------------------------ PROFILE ----------------------->
-      <!-- <v-col cols="12" sm="4">
-          <v-card min-height="300" min-width="150" elevation="0" > -->
-            <!-- <AppPerfilContentLoader v-if="loadingUI"></AppPerfilContentLoader> -->
-            <!-- <ProfileNav ></ProfileNav> -->
-          <!-- </v-card>
-      </v-col> -->
+      <v-col cols="12" sm="3">
+        <v-card min-height="300" min-width="150" elevation="0" >
+          <!-- <AppPerfilContentLoader v-if="loadingUI"></AppPerfilContentLoader> -->
+          <ProfileNav ></ProfileNav>
+        </v-card>
+      </v-col>
       <!------------------------ END PROFILE ----------------------->
 
     </v-row>
@@ -154,6 +199,11 @@ export default {
       snackbar: false,
       userYogurts: [],
       userYogurtsCopy: [],
+      tab: null,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      activeBtn: 1,
+      showNav: true,
+      show: false,
     }
   },
   computed: {
@@ -175,16 +225,17 @@ export default {
     //         });
     //       });
     //       });
-    // console.log(this.uid, 'this.uid')
-    // console.log(this.user.uid, 'this.user.uid')
     let userYogurtRef = db.collection('users/'+this.user.uid+'/user_yogurts')
     // ORDER DATA BY PRIORITY
     //userYogurtRef = userYogurtRef.orderBy("priority", "desc")
     // GET DATA
     userYogurtRef.onSnapshot(res => {
-
     const changes = res.docChanges();
+
     changes.forEach(change => {
+      let source = change.doc.metadata.hasPendingWrites ? "Local" : "Server";
+      console.log(source, " data: ", change.doc.data());
+
       if (change.type === 'added') {
         this.userYogurts.push({ // UNSHIF FOR ADD AT THE BEGINNING
           ...change.doc.data(),
@@ -199,7 +250,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.v-application--is-ltr .v-list-item__action:first-child, .v-application--is-ltr .v-list-item__icon:first-child {
+  margin-right: 0px !important; 
+}
+.card-container {
+  padding: 0 12px 12px 0;
+}
 .cal-item .btn {
   margin: 0 5px;
   height: 28px;
@@ -208,22 +264,18 @@ export default {
 .cal-item .btn i {
   font-size: 22px;  
 }
-
 .cal-item-title {
   padding: 16px 16px
 }
-
 .cal-item-list-tile {
   height: unset!important;
-  padding: 10px 16px;
+  padding: 5px 10px;
 }
-
 .cal-item-list-tile-action {
   align-self: flex-start;
   min-width: unset;
   padding-right: 16px;
 }
-
 .cal-item .color-2 {
   background-color: #F44336;
 }

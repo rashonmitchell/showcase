@@ -71,13 +71,13 @@
                             </v-list>
                             
                             <!------------------ END PROFILE DATA ------------------>
-                            <!-- <div class="mt-5"> -->
+                            <div class="mt-5">
                                 <!-- <div v-if="isAuthenticated && userCredentials.handle === data.handle"> -->
                                     <!--------------- EDIT PROFILE MODAL ----------------->
-                                    <!-- <ProfileEdit :data="data"></ProfileEdit> -->
+                                    <ProfileEdit :data="data"></ProfileEdit>
                                     <!---------------END EDIT PROFILE MODAL ------------->
                                 <!-- </div> -->
-                            <!-- </div> -->
+                            </div>
                         </v-col>
                     </v-row>
                 </v-col>

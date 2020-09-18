@@ -36,6 +36,15 @@
   .active {
     color: #42b983;
   }
+  .circle-buttons {
+    background-color: #fff;
+    z-index: 5;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    border: 1px solid #d4d4d4;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.23);
+  }
   // .b-link .text-info:active {
   //   color: #42b983 !important;
     
