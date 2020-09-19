@@ -50,11 +50,7 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
             <v-divider v-if="item.divider" :key="index" class="indigo darken-2" dark></v-divider>
           </v-list-item>
-          <!-- <v-list-item  text @click='signOutAction'>
-            <v-icon left>logout</v-icon>
-            <v-list-item-title>{{ $t('logout') }}</v-list-item-title>
-          </v-list-item> -->
-           <LogoutModal ></LogoutModal>
+           <LogoutModal></LogoutModal>
         </v-list>
       </v-menu>
     </v-toolbar-items>
@@ -66,7 +62,7 @@ import { mapGetters, mapActions } from "vuex";
 import LogoutModal from '../../auth/LogoutModal'
 export default {
   components: {
-    LogoutModal
+    LogoutModal,
   },
   data() {
     return {

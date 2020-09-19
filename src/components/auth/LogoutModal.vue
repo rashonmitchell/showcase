@@ -29,12 +29,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  props: {
-    scream: {
-      type: Object
-    }
-  },
-  data () {
+  data() {
     return {
       dialog: false,
     }

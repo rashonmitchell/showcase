@@ -10,7 +10,7 @@
                         <v-img class="card-img" src="https://www.gravatar.com/avatar/default?s=200&r=pg&d=mm"></v-img>
                     </v-avatar> -->
                     <!------------------ EDIT IMAGE BUTTON ------------------>
-                    <div >
+                    <div>
                         <input type="file" id="imageInput" hidden accept="image/*" @change="handleImageChange">
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on }">
@@ -74,7 +74,7 @@
                             <div class="mt-5">
                                 <!-- <div v-if="isAuthenticated && userCredentials.handle === data.handle"> -->
                                     <!--------------- EDIT PROFILE MODAL ----------------->
-                                    <ProfileEdit :data="data"></ProfileEdit>
+                                    <!-- <ProfileEdit :data="data"></ProfileEdit> -->
                                     <!---------------END EDIT PROFILE MODAL ------------->
                                 <!-- </div> -->
                             </div>
@@ -88,13 +88,13 @@
 </template>
 
 <script>
-import ProfileEdit from '../profile/ProfileEdit';
+//import ProfileEdit from '../profile/ProfileEdit';
 import moment from 'moment';
 import { mdiMapMarker, mdiWeb, mdiCalendar, mdiPencil, mdiPencilOutline, mdiCameraRetakeOutline } from '@mdi/js';
 import { mapGetters } from 'vuex';
 export default {
     components: {
-        ProfileEdit,
+        //ProfileEdit,
     },
     data: () => ({
         //date: loggedInUser.createdAt.toDate().toDateString(),

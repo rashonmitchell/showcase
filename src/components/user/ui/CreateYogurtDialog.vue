@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <div>
     <v-tooltip left>
       <template v-slot:activator="{ on }">
         <v-btn
@@ -20,9 +20,9 @@
       <span>Create a yogurt</span>
     </v-tooltip>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-    <!-------------------------  ADD FORM CARD ------------------>
+    <!-------------------------  CREATE YOGURT CARD ------------------>
       <v-card>
-        <!-------------------------  ADD FORM TOOLBAR ------------------>
+        <!-------------------------  CREATE YOGURT TOOLBAR ------------------>
         <v-toolbar dark color="primario white--text">
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
@@ -34,8 +34,8 @@
           <span>The form can't be submitted until all fields are filled out.</span>
           <v-btn text color="white" @click="snackbar = false">CLOSE</v-btn>
         </v-snackbar>
-        <!-------------------------  END ADD FORM TOOLBAR ------------------>
-        <!-------------------------  ADD FORM  ---------------------->
+        <!-------------------------  END CREATE YOGURT TOOLBAR ------------------>
+        <!-------------------------  CREATE YOGURT FORM  ---------------------->
         <v-form @submit.prevent="addYogurt" ref="form" name="createYogurt" v-model="valid" lazy-validation>
           <v-card-text>
             <v-container>
@@ -133,15 +133,15 @@
             </v-container>                    
           </v-card-actions>
         </v-form>
-        <!-------------------------  END ADD FORM  ---------------------->
+        <!-------------------------  END CREATE YOGURT FORM  ---------------------->
         <!-------------------------  EDIT FORM COMPONENT ------------------->
         <!-- <AppEditForm></AppEditForm> -->
         <!-------------------------  END EDIT FORM COMPONENT ----------------->
         
       </v-card>
-      <!-------------------------  END ADD FORM CARD ------------------>
+      <!-------------------------  END CREATE YOGURT CARD ------------------>
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 
 <script>

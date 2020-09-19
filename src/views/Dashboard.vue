@@ -1,13 +1,6 @@
 <template>
-  <!-- <v-container>
-    <v-row class="text-center">
-        
-    </v-row>
-  </v-container> -->
-</template>
-<template>
   <v-container fluid pa-3 style="min-height: 100vh;">
-    <AddBtn @yogurtAdded="snackbar = true"/>
+    
     <UserSettingsHeader />
 
     <v-snackbar v-model="snackbar" :timeout="6000" top color="#42b883">
@@ -24,8 +17,8 @@
 
     <v-row>
       <!------------------------ SCREAM LIST ----------------------->
-      <v-col cols="12" sm="8">
-        <v-container fluid grid-list-md class="card-container">
+      <v-col cols="12" sm="8" order="-1" order-sm="1" >
+        <v-container fluid grid-list-xl class="card-container">
           <v-layout row wrap>
             <v-flex d-flex xs12 sm6 v-for="item in userYogurts" :key="item.title" >
               <v-card class="flex-grow-1 cal-item">
@@ -115,6 +108,34 @@
                   </v-bottom-navigation>
                 </div> -->
                 <v-card-actions>
+                  <v-list-item class="grow">
+                    <v-row align="center" justify="end">
+                      <!---------------------- PLAY YOGURT ------------------------->
+                      <PlayYogurt></PlayYogurt>
+                      <v-spacer></v-spacer>
+                      <!--------------------- END PLAY YOGURT ---------------------->
+
+                      <!-- <v-btn text>{{$t('read')}}</v-btn>
+                      <v-btn text>{{$t('bookmark')}}</v-btn>
+                      <v-spacer></v-spacer> -->
+
+                      <!---------------------- LIKED BUTTON ------------------------->
+                      <LikedBtn></LikedBtn>
+                      <!-- todo # add count of share...maybe? do you really need the count? -->
+                      <span class="subheading mr-2">256</span>
+                      <!--------------------- END LIKED BUTTON ---------------------->
+
+                      <!---------------------- SHARE DIALOG ------------------------->
+                      <ShareBtnDialog></ShareBtnDialog>
+
+                      <!-- todo # add count of share...maybe? do you really need the count? -->
+                      <span class="subheading">45</span>
+                      <!--------------------- END SHARE DIALOG ----------------------->
+                    </v-row>
+                    
+                  </v-list-item>
+                </v-card-actions>
+                <!-- <v-card-actions>
                   <v-btn text>Share</v-btn>
                   <v-btn
                     color="purple"
@@ -137,17 +158,17 @@
                       I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
                     </v-card-text>
                   </div>
-                </v-expand-transition>
+                </v-expand-transition> -->
               </v-card>
             </v-flex>
           </v-layout>
         </v-container>
       </v-col>
       
-      <v-col v-if="authenticated">
-          <!-- <p>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</p>
-          <h2>{{ loggedInUser.email }}</h2> -->
-      </v-col>
+      <!-- <v-col v-if="authenticated">
+          <p>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</p>
+          <h2>{{ loggedInUser.email }}</h2>
+      </v-col> -->
       <!------------------------ SCREAM ITEM ----------------------->
       <!-- <v-card class="mb-5" v-for="userYogurt in userYogurts" :key="userYogurt.title">
         {{ userYogurt }} -->
@@ -159,40 +180,46 @@
           secondaryColor="#ecebeb">hahaha</div> -->
       <!-- </v-card> -->
       <!------------------------ END SCREAM ITEM ----------------------->
-      <v-col cols="12" sm="8">
-        <!-- <v-card  class="mb-5" elevation="3">
-        </v-card> -->
-      </v-col>
+      <!-- <v-col cols="12" sm="8">
+        <v-card  class="mb-5" elevation="3">
+        </v-card>
+      </v-col> -->
       <!------------------------ END SCREAM LIST ----------------------->
 
 
       <!------------------------ PROFILE ----------------------->
-      <v-col cols="12" sm="3">
+      <v-col cols="12" sm="3" order="1" order-sm="1" >
         <v-card min-height="300" min-width="150" elevation="0" >
           <!-- <AppPerfilContentLoader v-if="loadingUI"></AppPerfilContentLoader> -->
-          <ProfileNav ></ProfileNav>
+          <ProfileNav></ProfileNav>
         </v-card>
       </v-col>
       <!------------------------ END PROFILE ----------------------->
-
+      <CreateYogurtDialog @yogurtAdded="snackbar = true"/>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import AddBtn from '../components/user/ui/AddBtn'
+import CreateYogurtDialog from '../components/user/ui/CreateYogurtDialog'
 import UserSettingsHeader from '../components/user/settings/UserSettingsHeader'
 import ProfileNav from '../components/user/profile/ProfileNav'
+
+import PlayYogurt from '../components/user/ui/PlayYogurt'
+import LikedBtn from '../components/user/ui/LikedBtn'
+import ShareBtnDialog from '../components/user/ui/ShareBtnDialog'
 import { EventBus } from '../eventbus'
 import { db } from '../firebaseinit'
 import { mapGetters } from "vuex";
 export default {
   name: 'Dashboard',
   components: {
-    AddBtn,
+    CreateYogurtDialog,
     UserSettingsHeader,
     ProfileNav,
-
+    PlayYogurt,
+    LikedBtn,
+    ShareBtnDialog,
   },
   data() {
     return{
@@ -234,10 +261,10 @@ export default {
 
     changes.forEach(change => {
       let source = change.doc.metadata.hasPendingWrites ? "Local" : "Server";
-      console.log(source, " data: ", change.doc.data());
+      //console.log(source, " data: ", change.doc.data());
 
       if (change.type === 'added') {
-        this.userYogurts.push({ // UNSHIF FOR ADD AT THE BEGINNING
+        this.userYogurts.unshift({ // UNSHIF FOR ADD AT THE BEGINNING
           ...change.doc.data(),
           id: change.doc.id
           })
@@ -254,7 +281,7 @@ export default {
   margin-right: 0px !important; 
 }
 .card-container {
-  padding: 0 12px 12px 0;
+  // padding: 0 12px 12px 0;
 }
 .cal-item .btn {
   margin: 0 5px;
