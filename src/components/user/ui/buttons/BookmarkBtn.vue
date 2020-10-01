@@ -1,10 +1,9 @@
 <template>
     <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-            <v-icon @click="liked = !liked" v-on="on" class="mr-1" v-bind:color="liked ? '' : 'error'">mdi-heart</v-icon>
+            <v-icon @click="bookmarked = !bookmarked" v-on="on" class="mr-1" v-bind:color="bookmarked ? '' : 'yellow'">mdi-bookmark</v-icon>
         </template>
-        <span>{{ liked ? 'Like this yogurt' : 'Yogurt Liked' }}</span>
-        <!-- <span v-else>UnLike this yogurt</span> -->
+        <span>{{ bookmarked ? 'Bookmark this yogurt' : 'Yogurt Bookmarked!' }}</span>
     </v-tooltip>
 </template>
 
@@ -13,7 +12,7 @@
 export default {
   data() {
     return {
-      liked: true,
+      bookmarked: true,
     }
   },
   methods: {

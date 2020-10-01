@@ -110,19 +110,20 @@
                 <v-card-actions>
                   <v-list-item class="grow">
                     <v-row align="center" justify="end">
-                      <!---------------------- PLAY YOGURT ------------------------->
-                      <PlayYogurt></PlayYogurt>
+                      <!---------------------- PLAY BUTTON ------------------------->
+                      <PlayBtn></PlayBtn>
                       <v-spacer></v-spacer>
-                      <!--------------------- END PLAY YOGURT ---------------------->
+                      <!--------------------- END PLAY BUTTON ---------------------->
 
                       <!-- <v-btn text>{{$t('read')}}</v-btn>
                       <v-btn text>{{$t('bookmark')}}</v-btn>
                       <v-spacer></v-spacer> -->
 
                       <!---------------------- LIKED BUTTON ------------------------->
-                      <LikedBtn></LikedBtn>
+                      <!---------- user's wouldn't like their own yogurts? ---------->
+                      <!-- <LikedBtn></LikedBtn> -->
                       <!-- todo # add count of share...maybe? do you really need the count? -->
-                      <span class="subheading mr-2">256</span>
+                      <!-- <span class="subheading mr-2">256</span> -->
                       <!--------------------- END LIKED BUTTON ---------------------->
 
                       <!---------------------- SHARE DIALOG ------------------------->
@@ -135,60 +136,40 @@
                     
                   </v-list-item>
                 </v-card-actions>
-                <!-- <v-card-actions>
-                  <v-btn text>Share</v-btn>
-                  <v-btn
-                    color="purple"
-                    text
-                  >
-                    Explore
-                  </v-btn>
-                  <v-spacer></v-spacer>
-                  <v-btn
-                    icon
-                    @click="show = !show"
-                  >
-                    <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                  </v-btn>
-                </v-card-actions>
-                <v-expand-transition>
-                  <div v-show="show">
-                    <v-divider></v-divider>
-                    <v-card-text>
-                      I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                    </v-card-text>
-                  </div>
-                </v-expand-transition> -->
               </v-card>
             </v-flex>
           </v-layout>
         </v-container>
       </v-col>
-      
-      <!-- <v-col v-if="authenticated">
-          <p>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</p>
-          <h2>{{ loggedInUser.email }}</h2>
-      </v-col> -->
-      <!------------------------ SCREAM ITEM ----------------------->
-      <!-- <v-card class="mb-5" v-for="userYogurt in userYogurts" :key="userYogurt.title">
-        {{ userYogurt }} -->
-        <!-- <div 
-          :height=180
-          :width=500
-          :speed=2
-          primaryColor="#f3f3f3"
-          secondaryColor="#ecebeb">hahaha</div> -->
-      <!-- </v-card> -->
-      <!------------------------ END SCREAM ITEM ----------------------->
-      <!-- <v-col cols="12" sm="8">
-        <v-card  class="mb-5" elevation="3">
-        </v-card>
-      </v-col> -->
-      <!------------------------ END SCREAM LIST ----------------------->
 
+      <!------------------------ CALENDAR COL ----------------------->
+      <MiniDashboard />
+      <v-col md="4" sm="12" order="1" order-sm="1">
+        <!-- <v-sheet height="327" dark>
+          <v-calendar color="primary" type="day">
+            <template v-slot:day-header="{ present }">
+              <template
+                v-if="present"
+                class="text-center"
+              >
+                <h5 class="pa-1">Today</h5>
+              </template>
+            </template>
+
+            <template v-slot:interval="{ hour }">
+              <div
+                class="text-center"
+              >
+                {{ hour }} o'clock
+              </div>
+            </template>
+          </v-calendar>
+        </v-sheet> -->
+      </v-col>
+      <!------------------------ END CALENDAR COL ----------------------->
 
       <!------------------------ PROFILE ----------------------->
-      <v-col cols="12" sm="3" order="1" order-sm="1" >
+      <v-col  md="4" sm="12" order="1" order-sm="1" >
         <v-card min-height="300" min-width="150" elevation="0" >
           <!-- <AppPerfilContentLoader v-if="loadingUI"></AppPerfilContentLoader> -->
           <ProfileNav></ProfileNav>
@@ -204,20 +185,22 @@
 import CreateYogurtDialog from '../components/user/ui/CreateYogurtDialog'
 import UserSettingsHeader from '../components/user/settings/UserSettingsHeader'
 import ProfileNav from '../components/user/profile/ProfileNav'
+import MiniDashboard from '../components/user/ui/menu/MiniDashboard'
 
-import PlayYogurt from '../components/user/ui/PlayYogurt'
-import LikedBtn from '../components/user/ui/LikedBtn'
+import PlayBtn from '../components/user/ui/buttons/PlayBtn'
+import LikedBtn from '../components/user/ui/buttons/LikedBtn'
 import ShareBtnDialog from '../components/user/ui/ShareBtnDialog'
 import { EventBus } from '../eventbus'
 import { db } from '../firebaseinit'
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: 'Dashboard',
   components: {
     CreateYogurtDialog,
     UserSettingsHeader,
     ProfileNav,
-    PlayYogurt,
+    MiniDashboard,
+    PlayBtn,
     LikedBtn,
     ShareBtnDialog,
   },
@@ -226,9 +209,6 @@ export default {
       snackbar: false,
       userYogurts: [],
       userYogurtsCopy: [],
-      tab: null,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      activeBtn: 1,
       showNav: true,
       show: false,
     }
@@ -240,18 +220,9 @@ export default {
     openDialog() {
       EventBus.$emit('dialog', true)
     },
+    ...mapActions("auth", ['signInAction', 'signInGoogle', 'signInFacebook']),
   },
   created() {
-    // db.collection('users/'+this.uid+'/users-yogurts').onSnapshot(snapshot => {
-    //       const snapData = [];
-    //       snapshot.forEach( doc => {
-    //         snapData.push({
-    //           id: doc.id,
-    //           title: doc.data().title
-              
-    //         });
-    //       });
-    //       });
     let userYogurtRef = db.collection('users/'+this.user.uid+'/user_yogurts')
     // ORDER DATA BY PRIORITY
     //userYogurtRef = userYogurtRef.orderBy("priority", "desc")
@@ -264,7 +235,7 @@ export default {
       //console.log(source, " data: ", change.doc.data());
 
       if (change.type === 'added') {
-        this.userYogurts.unshift({ // UNSHIF FOR ADD AT THE BEGINNING
+        this.userYogurts.unshift({
           ...change.doc.data(),
           id: change.doc.id
           })

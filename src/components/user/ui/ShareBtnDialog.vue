@@ -3,9 +3,9 @@
     <!---------------------- SHARE DIALOG ------------------------->
         <v-tooltip bottom>
             <template v-slot:activator="{ on }">
-                <v-icon @click="dialog = true" v-on="on" class="mr-1" v-bind:color="copied ? '' : 'primary'">mdi-share-variant</v-icon>
+                <v-icon @click="dialog = true" v-on="on" class="mr-1" v-bind:color="copied ? 'primary' : ' '">mdi-share-variant</v-icon>
             </template>
-            <span>Share this yogurt</span>
+            <span>{{ copied ? 'Yogurt Shared!' : 'Share this yogurt' }}</span>
         </v-tooltip>
     <!--------------------- END SHARE DIALOG ----------------------->
         <v-dialog v-model="dialog" width="400" >
@@ -54,23 +54,29 @@
 <script>
 //import { mapActions } from 'vuex';
 export default {
-  data() {
-    return {
-      copied: false,
-      dialog: false,
-    }
-  },
-  methods: {
-    // ...mapActions('auth', ['signOutAction']),
-    copy() {
-      const markup = this.$refs.link
-      markup.focus()
-      document.execCommand('selectAll', false, null)
-      this.copied = document.execCommand('copy')
+    data() {
+        return {
+            copied: false,
+            dialog: false,
+            types: [
+                { link: '#', name: 'Instagram', icon: 'mdi-instagram', color: 'indigo ascent-2'},
+                { link: '#', name: 'Facebook', icon: 'mdi-facebook', color: 'indigo ascent-2'},
+                { link: '#', name: 'Twitter', icon: 'mdi-twitter', color: 'indigo ascent-2'},
+                { link: '#', name: 'Google Plus', icon: 'mdi-google-plus', color: 'indigo ascent-2'}
+            ],
+        }
     },
-  },
-  computed: {
-    // ...mapGetters(['loadingUser'])
-  }
+    methods: {
+    // ...mapActions('auth', ['signOutAction']),
+        copy() {
+            const markup = this.$refs.link
+            markup.focus()
+            document.execCommand('selectAll', false, null)
+            this.copied = document.execCommand('copy')
+        },
+    },
+    computed: {
+        // ...mapGetters(['loadingUser'])
+    },
 }
 </script>

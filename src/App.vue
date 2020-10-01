@@ -12,7 +12,7 @@
 
 <script>
 import LoadingScreen from "./components/LoadingScreen";
-import NavBar from './components/user/ui/NavBar';
+import NavBar from './components/user/ui/menu/NavBar';
 
 export default {
   name: 'App',

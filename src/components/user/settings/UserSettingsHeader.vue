@@ -48,12 +48,7 @@
             <!-- </router-link> -->
           </div>
         </v-col>
-        <!-- <v-col cols="2" >
-          <v-btn>
-            Edit profile
-          </v-btn>
-          <router-link to="/settings/profile" class="ui button primary">Edit profile</router-link>
-        </v-col> -->
+        
       </v-flex>
       <v-flex md2 order-md3 align-center class="d-flex justify-center">
         <v-tooltip bottom>

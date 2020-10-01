@@ -1,5 +1,5 @@
 <template>
-    <v-card flat outlined color="#35495e">
+    <v-card flat outlined >
         <v-container dark color="#35495e">
             <v-row>
                 <v-col offset="1" cols="10" class="center relative">
@@ -82,6 +82,60 @@
                     </v-row>
                 </v-col>
             </v-row>
+
+            <v-row justify='center' align='center'>
+                <v-card elevation='24' max-width="474" color="#FFEC19" class='px-6 pb-2'>
+        
+                <v-card-title class="title py-8 pl-10 mb-3">
+                    Profile Info
+                    <v-spacer></v-spacer>
+                </v-card-title>
+                
+                <v-card-text class="ml-12 pa-0">
+                    <v-card 
+                    elevation='24' color='white' width='456' class='pa-6'
+                    >
+                    <v-row offset="1" cols="10" class="relative">
+                        <v-avatar size="85" class="mb-3 mt-n12" v-if="loggedInUser.providerData[0].photoURL !== null || loggedInUser.photo === null">
+                            <img v-bind:src="loggedInUser.providerData[0].photoURL || loggedInUser.photo">
+                        </v-avatar>
+                        <!------------------ EDIT IMAGE BUTTON ------------------>
+                        <div>
+                            <input type="file" id="imageInput" hidden accept="image/*" @change="handleImageChange">
+                            <v-tooltip bottom>
+                                <template v-slot:activator="{ on }">
+                                    <v-btn class="mx-2" fab small color="#32BCC3" :loading="isSelecting" absolute right bottom @click="editImage" v-on="on" dark>
+                                        <v-icon dark>{{svg.camera}}</v-icon>
+                                        {{ buttonText }}
+                                    </v-btn>
+                                </template>
+                                <span>Edit Profile Image</span>
+                            </v-tooltip>
+                        </div>
+                        <!------------------ EDIT IMAGE BUTTON ------------------>
+                    </v-row>
+                    <v-text-field
+                        class="mt-4" 
+                        label="User" :placeholder="loggedInUser.displayName" outlined disabled prepend-icon="person"
+                    ></v-text-field>
+                    <v-text-field
+                        :label="$t('email')" :placeholder="loggedInUser.email" disabled outlined prepend-icon="mdi-email-outline">
+                    </v-text-field>
+                    <v-text-field 
+                        label="Bio" :placeholder="loggedInUser.bio" outlined disabled prepend-icon="mdi-card-account-details-outline"
+                    ></v-text-field>
+                    <v-text-field 
+                        label="Bio" :placeholder="loggedInUser.bio" outlined disabled prepend-icon="svg.calendar"
+                    ></v-text-field>              
+                    </v-card>          
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn text class="text-capitalize" v-for="i in ['Cancel','Save']" :key='i' v-text="i"/>
+                </v-card-actions>
+                
+                </v-card>
+            </v-row> 
         </v-container>
     </v-card>
     

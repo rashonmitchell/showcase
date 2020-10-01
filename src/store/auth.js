@@ -178,35 +178,29 @@ export default {
     async signInGoogle (context){
       context.commit('updateLoggingIn', true)
       //const provideGoogle = new firebase.auth.GoogleAuthProvider();
-      // try {
-      //   await firebase
-      //   .auth()
-      //   .signInWithPopup(provideGoogle)
-      //   .then(
-      //     user => {
-      //       const newUser = {
-      //         id: user.uid,
-      //         name: user.displayName,
-      //         email: user.email,
-      //         photo: user.photoURL
-      //       }
-      //       // // Link the credential to the current user.
-      //       // firebase.auth().currentUser.linkWithCredential(credential)
-      //       // .then(function(usercred) {
-      //       //   // The provider is now successfully linked.
-      //       //   // The phone user can now sign in with their phone number or email.
-      //       // })
-      //       .then(() => {
-      //         db.collection('users')
-      //         .add({id: newUser.uid, displayName: newUser.displayName, email: newUser.email, photo: newUser.photoUrl})
-      //       })
-      //       context.commit('setUser', newUser)
-      //     }
-      //   )
-      // } catch(error)  {
-      //   context.commit('setError', error.message)
-      //   context.commit('updateLoggingIn', false)
-      // }
+      try {
+        await firebase
+        .auth()
+        .signInWithPopup(provideGoogle)
+        .then(
+          user => {
+            const newUser = {
+              id: user.uid,
+              name: user.displayName,
+              email: user.email,
+              photo: user.photoURL
+            }
+            .then(() => {
+              db.collection('users')
+              .add({id: newUser.uid, displayName: newUser.displayName, email: newUser.email, photo: newUser.photoUrl})
+            })
+            context.commit('setUser', newUser)
+          }
+        )
+      } catch(error)  {
+        context.commit('setError', error.message)
+        context.commit('updateLoggingIn', false)
+      }
       firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(error) {
         if (error.code === 'auth/account-exists-with-different-credential') {
           let pendingCred = error.credential;
@@ -322,5 +316,13 @@ export default {
         createAt: firebase.firestore.FieldValue.serverTimestamp()
       })
     },
+    deleteYogurt(payload) {
+      // db.collection("users")
+      // .doc(this.user.uid)
+      db.collection('users/'+this.user.uid+'/user_yogurts')
+      .collection("user_yogurts")
+      .doc(payload)
+      .delete();
+    }
   }
 }

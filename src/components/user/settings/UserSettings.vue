@@ -12,30 +12,17 @@
     <!------------------------ END PROFILE NAME ----------------------->
 
     <!------------------------ SCREAM LIST ----------------------->
-    <v-col cols="12" sm="3" order="-1" order-sm="1">
-        <v-card min-height="200" min-width="150" elevation="0" >
+    <v-col cols="12" sm="4" order="-1" order-sm="1">
+        <!-- <v-card min-height="200" min-width="150" elevation="0" > -->
           <!-- <AppPerfilContentLoader v-if="loadingUI"></AppPerfilContentLoader> -->
           <ProfileNav ></ProfileNav>
-        </v-card>
+        <!-- </v-card> -->
     </v-col>
-      
-        
-    <!------------------------ SCREAM ITEM ----------------------->
-    <v-card class="mb-5" elevation="0">
-      
-    </v-card>
-    <!------------------------ END SCREAM ITEM ----------------------->
-
-    <!-- <v-col cols="12" sm="8" >
-        <v-card  class="mb-5" elevation="0">
-            
-        </v-card>
-    </v-col> -->
     <!------------------------ END SCREAM LIST ----------------------->
 
 
     <!------------------------ PROFILE TABS ----------------------->
-    <v-col cols="12" sm="9" order="1" order-sm="2" >
+    <v-col cols="12" sm="8" order="1" order-sm="2" >
       <UserSettingsMenu />
     </v-col>
     <!------------------------ END PROFILE TABS ----------------------->

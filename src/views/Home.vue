@@ -27,20 +27,31 @@
         <div>{{$t('yogurtOfTheDay')}}</div>
       </v-card-title>
 
-      <v-card-text class="headline font-weight-bold">
+      <v-card-text class="headline font-weight-bold my-2">
         " Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
       </v-card-text>
       <v-divider color="#212121" class="ma-3"></v-divider>
       <v-card-actions>
         <v-list-item class="grow">
           <v-row align="center" justify="end">
-            <!---------------------- PLAY YOGURT ------------------------->
-            <PlayYogurt></PlayYogurt>
+            <!---------------------- PLAY BUTTON ------------------------->
+            <PlayBtn></PlayBtn>
             <v-spacer></v-spacer>
-            <!--------------------- END PLAY YOGURT ---------------------->
-            <v-btn text>{{$t('read')}}</v-btn>
-            <v-btn text>{{$t('bookmark')}}</v-btn>
+            <!--------------------- END PLAY BUTTON ---------------------->
+            <!-- <v-btn text>{{$t('read')}}</v-btn> -->
             <v-spacer></v-spacer>
+            <!---------------------- LIKED BUTTON ------------------------->
+            <BookmarkBtn></BookmarkBtn>
+             <span class="subheading mr-3"></span>
+            <!-- todo # add count of bookmarked...maybe? do you really need the count? but this should go to a Bookmarked section on dashboard. -->
+            <!-- <v-btn text>{{$t('bookmark')}}</v-btn> -->
+            <!--------------------- END LIKED BUTTON ---------------------->
+
+            <!---------------------- LIKED BUTTON ------------------------->
+            <Comment></Comment>
+            <!-- todo # add count of share...maybe? do you really need the count? -->
+            <span class="subheading mr-2">10</span>
+            <!--------------------- END LIKED BUTTON ---------------------->
 
             <!---------------------- LIKED BUTTON ------------------------->
             <LikedBtn></LikedBtn>
@@ -78,14 +89,18 @@
 import CreateYogurtDialog from '../components/user/ui/CreateYogurtDialog'
 //import AddBtnDialog from '../components/user/ui/AddBtnDialog'
 
-import PlayYogurt from '../components/user/ui/PlayYogurt'
-import LikedBtn from '../components/user/ui/LikedBtn'
+import BookmarkBtn from '../components/user/ui/buttons/BookmarkBtn'
+import Comment from '../components/user/ui/comment/Comment'
+import PlayBtn from '../components/user/ui/buttons/PlayBtn'
+import LikedBtn from '../components/user/ui/buttons/LikedBtn'
 import ShareBtnDialog from '../components/user/ui/ShareBtnDialog'
 export default {
   name: "Home",
   components: {
     CreateYogurtDialog,
-    PlayYogurt,
+    BookmarkBtn,
+    Comment,
+    PlayBtn,
     LikedBtn,
     ShareBtnDialog,
     //AddBtnDialog,
