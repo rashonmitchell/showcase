@@ -70,30 +70,18 @@
         </v-list-item>
       </v-card-actions>
     </v-card>
-    <!-- <AddBtnDialog /> -->
-    <!-- <v-flex xs12 sm6 offset-sm3 mt-3>
-      <blockquote class="blockquote text-xs-center">
-        It is a long established fact that a reader will be distracted by the readable content of a 
-        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
-        normal distribution of letters, as opposed to using 'Content here, content here', making it 
-        look like readable English. Many desktop publishing packages and web page editors now use 
-        Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many 
-        web sites still in their infancy. Various versions have evolved over the years, sometimes 
-        by accident, sometimes on purpose (injected humour and the like).
-      </blockquote>
-    </v-flex> -->
   </v-container>
 
 </template>
 <script>
-import CreateYogurtDialog from '../components/user/ui/CreateYogurtDialog'
+import CreateYogurtDialog from '../components/ui/CreateYogurtDialog'
 //import AddBtnDialog from '../components/user/ui/AddBtnDialog'
 
-import BookmarkBtn from '../components/user/ui/buttons/BookmarkBtn'
-import Comment from '../components/user/ui/comment/Comment'
-import PlayBtn from '../components/user/ui/buttons/PlayBtn'
-import LikedBtn from '../components/user/ui/buttons/LikedBtn'
-import ShareBtnDialog from '../components/user/ui/ShareBtnDialog'
+import BookmarkBtn from '../components/ui/buttons/BookmarkBtn'
+import Comment from '../components/ui/comment/Comment'
+import PlayBtn from '../components/ui/buttons/PlayBtn'
+import LikedBtn from '../components/ui/buttons/LikedBtn'
+import ShareBtnDialog from '../components/ui/ShareBtnDialog'
 export default {
   name: "Home",
   components: {

@@ -1,16 +1,16 @@
 <template>
-    <v-card flat outlined >
-        <v-container dark color="#35495e">
-            <v-row>
+    <!-- <v-card flat>
+        <v-container dark color="#35495e"> -->
+            <!-- <v-row>
                 <v-col offset="1" cols="10" class="center relative">
                     <v-avatar v-if="loggedInUser.providerData[0].photoURL !== null || loggedInUser.photo === null" size="100">
                         <img v-bind:src="loggedInUser.providerData[0].photoURL || loggedInUser.photo" >
-                    </v-avatar>
+                    </v-avatar> -->
                     <!-- <v-avatar size="100">
                         <v-img class="card-img" src="https://www.gravatar.com/avatar/default?s=200&r=pg&d=mm"></v-img>
                     </v-avatar> -->
                     <!------------------ EDIT IMAGE BUTTON ------------------>
-                    <div>
+                    <!-- <div>
                         <input type="file" id="imageInput" hidden accept="image/*" @change="handleImageChange">
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on }">
@@ -21,18 +21,18 @@
                             </template>
                             <span>Edit Profile Image</span>
                         </v-tooltip>
-                    </div>
+                    </div> -->
                     <!------------------ EDIT IMAGE BUTTON ------------------>
-                </v-col>
+                <!-- </v-col>
                 <v-col offset="1" cols="10" color="#1F7087">
                     <v-row dense>
-                        <v-col>
+                        <v-col> -->
                             <!------------------ PROFILE DATA ------------------>
                             <!-- <div class="text-center mb-3 title text-secundario font-weight-bold">
                                 <span>{{ $t('welcomeUser', {fulllName: loggedInUser.displayName}) }}</span> 
                             </div> -->
 
-                            <v-list disabled two-line outlined rounded color="#42b883">
+                            <!-- <v-list disabled two-line outlined rounded color="#42b883">
                                 <v-list-item-group color="primary" class="">
                                     <v-list-item>
                                         <v-list-item-icon>
@@ -62,31 +62,31 @@
                                             <v-list-item-title>Joined:</v-list-item-title>
                                             <v-list-item-subtitle>
                                                 {{ moment(loggedInUser.createdAt).format('LL') }}
-                                                <!-- {{data.createdAt | day}} -->
-                                                <!-- {{ moment(loggedInUser.createdAt).format("ddd, MMM Do YYYY") }} Mon, Aug 17th 2020 -->
+                                                {{data.createdAt | day}}
+                                                {{ moment(loggedInUser.createdAt).format("ddd, MMM Do YYYY") }} Mon, Aug 17th 2020
                                             </v-list-item-subtitle>
                                         </v-list-item-content>
                                     </v-list-item>
                                 </v-list-item-group>
-                            </v-list>
+                            </v-list> -->
                             
                             <!------------------ END PROFILE DATA ------------------>
-                            <div class="mt-5">
-                                <!-- <div v-if="isAuthenticated && userCredentials.handle === data.handle"> -->
-                                    <!--------------- EDIT PROFILE MODAL ----------------->
-                                    <!-- <ProfileEdit :data="data"></ProfileEdit> -->
-                                    <!---------------END EDIT PROFILE MODAL ------------->
-                                <!-- </div> -->
-                            </div>
-                        </v-col>
+                            <!-- <div class="mt-5">
+                                <div v-if="isAuthenticated && userCredentials.handle === data.handle">
+                                    ------------- EDIT PROFILE MODAL ---------------
+                                    <ProfileEdit :data="data"></ProfileEdit>
+                                    -------------END EDIT PROFILE MODAL -----------
+                                </div>
+                            </div> -->
+                        <!-- </v-col>
                     </v-row>
                 </v-col>
-            </v-row>
+            </v-row> -->
 
             <v-row justify='center' align='center'>
-                <v-card elevation='24' max-width="474" color="#FFEC19" class='px-6 pb-2'>
+                <v-card elevation='24' max-width="474" color="#1F7087" class='px-6 pb-2'>
         
-                <v-card-title class="title py-8 pl-10 mb-3">
+                <v-card-title class="title py-4 pl-10 mb-3 left">
                     Profile Info
                     <v-spacer></v-spacer>
                 </v-card-title>
@@ -125,19 +125,19 @@
                         label="Bio" :placeholder="loggedInUser.bio" outlined disabled prepend-icon="mdi-card-account-details-outline"
                     ></v-text-field>
                     <v-text-field 
-                        label="Bio" :placeholder="loggedInUser.bio" outlined disabled prepend-icon="svg.calendar"
+                        label="Joined" :placeholder="moment(loggedInUser.createdAt).format('LL')" outlined disabled prepend-icon="calendar"
                     ></v-text-field>              
                     </v-card>          
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn text class="text-capitalize" v-for="i in ['Cancel','Save']" :key='i' v-text="i"/>
+                    <!-- <v-btn text class="text-capitalize" v-for="i in ['Cancel','Save']" :key='i' v-text="i"/> -->
                 </v-card-actions>
                 
                 </v-card>
             </v-row> 
-        </v-container>
-    </v-card>
+        <!-- </v-container>
+    </v-card> -->
     
 </template>
 

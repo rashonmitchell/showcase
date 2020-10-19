@@ -73,59 +73,10 @@
                 </v-form>
             </v-card>
         </v-col>
-
-        <v-card elevation='24' max-width="474" color="#FFEC19" class='px-6 pb-2'>
-  
-          <v-card-title class="title py-8 pl-10 mb-3">
-            {{TEXT_TITLE__CARD}}
-            <v-spacer></v-spacer>
-            <v-btn text icon><v-icon>close</v-icon></v-btn>
-          </v-card-title>
-          
-          <v-card-text class="ml-12 pa-0">
-            <v-card 
-              elevation='24' color='white' width='456' class='pa-6'
-            >
-              <v-avatar size="85" class="mb-3 mt-n12">
-                  <img :src="URL_IMAGE">
-              </v-avatar>
-              <v-text-field
-                class="mt-4" label="USERNAME"
-                placeholder="Martinator3000"
-              ></v-text-field>
-              <v-row>
-                <v-col cols='6'>
-                  <v-text-field
-                    label="FIRST NAME" placeholder="Martin"
-                  ></v-text-field>                
-                </v-col>
-                <v-col cols='6'>
-                  <v-text-field
-                    label="LAST NAME" placeholder="Lewis"
-                  ></v-text-field>                            
-                </v-col>
-              </v-row>
-              <v-text-field
-                  label="EMAIL" placeholder="martin@lewis.com">
-              </v-text-field>                        
-              <v-textarea 
-                label="BIO" :value='TEXT_PLACEHOLDER'>
-              </v-textarea>                
-            </v-card>          
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn text class="text-capitalize" v-for="i in ['Cancel','Save']" :key='i' v-text="i"/>
-          </v-card-actions>
-          
-        </v-card>
     </v-row>
 </template>
 
 <script>
-const URL_IMAGE = 'https://i.imgur.com/DTr5WPa.png';
-const TEXT_TITLE__CARD = 'Account Settings';
-const TEXT_PLACEHOLDER = "Hey! My name is Martin and i love to design. Check out my store & don't forget to rate it.";
 import { mapActions, mapGetters } from "vuex";
 export default {
   data: function(){
@@ -164,10 +115,5 @@ export default {
       this.$refs.form.reset() && this.$refs.form.resetValidation()
     }
   },
-  created() {
-    this.TEXT_TITLE__CARD = TEXT_TITLE__CARD;
-    this.TEXT_PLACEHOLDER = TEXT_PLACEHOLDER;
-    this.URL_IMAGE = URL_IMAGE;
-  }
 }
 </script>

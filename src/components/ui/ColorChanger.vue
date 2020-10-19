@@ -2,13 +2,13 @@
 	<v-col class="shrink" style="min-width: 200px;" justify="center" >
 		<v-text-field v-model="color" :mask="mask" hide-details class="ma-0 pa-0" solo>
 			<template v-slot:prepend>
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on }">
-                  <v-icon v-on="on">mdi-palette</v-icon>
-                </template>
-                HEX Color
-              </v-tooltip>
-            </template>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-icon v-on="on">mdi-palette</v-icon>
+          </template>
+          HEX Color
+        </v-tooltip>
+      </template>
 			<template v-slot:append>
 				<v-menu v-model="menu" top nudge-bottom="105" nudge-left="16" :close-on-content-click="false">
 					<template v-slot:activator="{ on }">

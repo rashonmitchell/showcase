@@ -15,14 +15,14 @@
           </template>
           
           <!-- ICON END -->
-          <img :src="require(`../../../assets/flags/${langs[current]}.png`)" :alt="langs[current]">
+          <img :src="require(`../../assets/flags/${langs[current]}.png`)" :alt="langs[current]">
           <span class="pl-3"> {{ langs[current] }}</span>
         </div>
       </template>
       <v-list class="LocaleChangerMenu">
         <v-list-item v-for="(lang, i) in langs" :key="i" @click="changeLang(lang, i)">
           <v-list-item-content>
-            <img :src="require(`../../../assets/flags/${langs[i]}.png`)" :alt="lang" :value="lang">
+            <img :src="require(`../../assets/flags/${langs[i]}.png`)" :alt="lang" :value="lang">
             <span>{{ lang }}</span>
           </v-list-item-content>
         </v-list-item>
@@ -32,8 +32,7 @@
 </template>
 
 <script>
-import { languages } from '../../../lang'
-
+import { languages } from '../../lang'
 export default {
   name: 'LocaleChanger',
   data () {

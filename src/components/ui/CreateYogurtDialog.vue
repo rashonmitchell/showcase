@@ -24,11 +24,11 @@
       <v-card>
         <!-------------------------  CREATE YOGURT TOOLBAR ------------------>
         <v-toolbar dark color="primario white--text">
+          <v-toolbar-title class="text-center">Create a yogurt</v-toolbar-title>
+          <v-spacer></v-spacer>
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-toolbar-title class="text-center">Create a yogurt</v-toolbar-title>
-          <v-spacer></v-spacer>
         </v-toolbar>
         <v-snackbar @yogurtError="snackbar = true" v-model="snackbar" :timeout="6000" top color="error white--text">
           <span>The form can't be submitted until all fields are filled out.</span>
@@ -147,8 +147,8 @@
 <script>
 // import AppEditForm from '../yogurt/AppEditForm'
 import { mapGetters } from 'vuex';
-import { EventBus } from '../../../eventbus';
-import { db } from '../../../firebaseinit'
+import { EventBus } from '../../eventbus';
+import { db } from '../../firebaseinit'
 import moment from 'moment';
 export default {
   components: {

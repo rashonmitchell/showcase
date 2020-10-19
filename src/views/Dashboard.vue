@@ -143,7 +143,7 @@
       </v-col>
 
       <!------------------------ CALENDAR COL ----------------------->
-      <MiniDashboard />
+      <!-- <MiniDashboard /> -->
       <v-col md="4" sm="12" order="1" order-sm="1">
         <!-- <v-sheet height="327" dark>
           <v-calendar color="primary" type="day">
@@ -172,7 +172,7 @@
       <v-col  md="4" sm="12" order="1" order-sm="1" >
         <v-card min-height="300" min-width="150" elevation="0" >
           <!-- <AppPerfilContentLoader v-if="loadingUI"></AppPerfilContentLoader> -->
-          <ProfileNav></ProfileNav>
+          <!-- <ProfileNav></ProfileNav> -->
         </v-card>
       </v-col>
       <!------------------------ END PROFILE ----------------------->
@@ -182,14 +182,14 @@
 </template>
 
 <script>
-import CreateYogurtDialog from '../components/user/ui/CreateYogurtDialog'
+import CreateYogurtDialog from '../components/ui/CreateYogurtDialog'
 import UserSettingsHeader from '../components/user/settings/UserSettingsHeader'
 import ProfileNav from '../components/user/profile/ProfileNav'
-import MiniDashboard from '../components/user/ui/menu/MiniDashboard'
+import MiniDashboard from '../components/ui/menu/MiniDashboard'
 
-import PlayBtn from '../components/user/ui/buttons/PlayBtn'
-import LikedBtn from '../components/user/ui/buttons/LikedBtn'
-import ShareBtnDialog from '../components/user/ui/ShareBtnDialog'
+import PlayBtn from '../components/ui/buttons/PlayBtn'
+import LikedBtn from '../components/ui/buttons/LikedBtn'
+import ShareBtnDialog from '../components/ui/ShareBtnDialog'
 import { EventBus } from '../eventbus'
 import { db } from '../firebaseinit'
 import { mapActions, mapGetters } from "vuex";

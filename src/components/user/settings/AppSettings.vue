@@ -36,8 +36,8 @@
 
 <script>
 import { mdiThemeLightDark } from '@mdi/js'
-import LocaleChanger from '../ui/LocaleChanger'
-import ColorChanger from '../ui/ColorChanger'
+import LocaleChanger from '../../ui/LocaleChanger'
+import ColorChanger from '../../ui/ColorChanger'
 export default {
     components: {
         LocaleChanger,
